@@ -34,9 +34,9 @@ app.use(koaLogger());
 app.keys = config.key;
 app.use(session(app));
 app.use(bodyParser());
-app.use(favicon(__dirname + '/asserts/favicon.ico'));
+app.use(favicon(__dirname + '/assets/favicon.ico'));
 
-app.use(serve(__dirname + '/asserts/'));
+app.use(serve(__dirname + '/assets/'));
 app.use(router.routes());
 
 app.listen(config.port, function() {
