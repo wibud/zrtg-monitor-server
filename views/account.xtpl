@@ -1,0 +1,5 @@
+{{extend ('./layout')}}
+
+{{#block ('body')}}
+<h2>账户管理</h2>
+{{/block}}
