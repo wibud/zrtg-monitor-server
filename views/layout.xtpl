@@ -13,7 +13,9 @@
 	<!-- Custom Fonts -->
 	<link href="/assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+	{{#if(page)}}
 	<link rel="stylesheet" href="/assets/build/{{page}}/index.css">
+	{{/if}}
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -39,7 +41,9 @@
 <script src="/assets/lib/raphael/raphael-min.js"></script>
 <script src="/assets/lib/morrisjs/js/morris.min.js"></script>
 
+{{#if(page)}}
 <script src="/assets/build/{{page}}/index.js"></script>
+{{/if}}
 
 </body>
 </html>
