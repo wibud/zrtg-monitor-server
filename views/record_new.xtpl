@@ -3,100 +3,99 @@
 {{extend ('./layout')}}
 
 {{#block ('body')}}
-    <div id="page-wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">添加记录</h1>
-            </div>
-            <!-- /.col-lg-12 -->
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="alert alert-warning alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <strong>注意!</strong> 提交前请复查，一旦提交不能修改
-                </div>
-                <div class="row">
-                    <div class="col-lg-8">
-                        <form id="commentForm" method="get" action="">
-                            <div id="rootwizard">
-                                <ul>
-                                    <li><a href="#tab1" data-toggle="tab"><span>1</span>基本信息</a></li>
-                                    <li><a href="#tab2" data-toggle="tab"><span>2</span>节目属性</a></li>
-                                    <li><a href="#tab3" data-toggle="tab"><span>3</span>事件详情</a></li>
-                                </ul>
-                                <div class="tab-content">
-                                    <div class="tab-pane" id="tab1">
-                                        <div class="form-group">
-                                            <label class="control-label" for="J_Datefield"><i class="fa fa-calendar fa-fw"></i>发现日期</label>
-                                            <input type="text" class="form-control input-lg required" id="J_Datefield">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="J_Timefield"><i class="fa fa-clock-o fa-fw"></i>发现时间</label>
-                                            <input type="text" class="form-control input-lg required" id="J_Timefield">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="J_Dept"><i class="fa fa-calendar fa-fw"></i>科组</label>
-                                            <input type="text" class="form-control input-lg required" id="J_Dept">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="J_Class"><i class="fa fa-calendar fa-fw"></i>班次</label>
-                                            <input type="text" class="form-control input-lg required" id="J_Class">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="J_finder"><i class="fa fa-calendar fa-fw"></i>发现人</label>
-                                            <input type="text" class="form-control input-lg required" id="J_finder">
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="tab2">
-                                        <div class="form-group">
-                                            <label class="control-label" for="J_Chanel"><i class="fa fa-calendar fa-fw"></i>频道</label>
-                                            <input type="text" class="form-control input-lg required" id="J_Chanel">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="J_Program"><i class="fa fa-calendar fa-fw"></i>节目类型</label>
-                                            <input type="text" class="form-control input-lg required" id="J_Program">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="J_Section"><i class="fa fa-calendar fa-fw"></i>栏目名称</label>
-                                            <input type="text" class="form-control input-lg required" id="J_Section">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="J_Playtime"><i class="fa fa-calendar fa-fw"></i>时间入点</label>
-                                            <input type="text" class="form-control input-lg required" id="J_Playtime">
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="tab3">
-                                        <div class="form-group">
-                                            <label class="control-label" for="J_Event"><i class="fa fa-calendar fa-fw"></i>事件性质</label>
-                                            <input type="text" class="form-control input-lg required" id="J_Event">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="J_Error"><i class="fa fa-calendar fa-fw"></i>错误类别</label>
-                                            <input type="text" class="form-control input-lg required" id="J_Error">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="J_Question"><i class="fa fa-calendar fa-fw"></i>具体问题</label>
-                                            <input type="text" class="form-control input-lg required" id="J_Question">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="J_Desc"><i class="fa fa-calendar fa-fw"></i>描述补充</label>
-                                            <input type="text" class="form-control input-lg required" id="J_Desc">
-                                        </div>
-                                    </div>
-                                    <ul class="pager wizard">
-                                        <li class="previous first" style="display:none;"><a href="#">First</a></li>
-                                        <li class="previous"><a href="#">上一项</a></li>
-                                        <li class="next last" style="display:none;"><a href="#">Last</a></li>
-                                        <li class="next"><a href="#">下一项</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-lg-4"></div>
-                </div>
-            </div>
-        </div>
+<div id="page-wrapper">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">添加记录</h1>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>注意!</strong> 提交前请复查，一旦提交不能修改
+      </div>
+      <div class="row">
+        <div class="col-lg-8">
+          <form id="commentForm" method="get" action="">
+            <div id="rootwizard">
+              <ul>
+                <li><a href="#tab1" data-toggle="tab"><span>1</span>基本信息</a></li>
+                <li><a href="#tab2" data-toggle="tab"><span>2</span>节目属性</a></li>
+                <li><a href="#tab3" data-toggle="tab"><span>3</span>事件详情</a></li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane" id="tab1">
+                  <div class="form-group">
+                    <label class="control-label" for="J_Datefield"><i class="fa fa-calendar fa-fw"></i>发现日期</label>
+                    <input type="text" class="form-control input-lg required" id="J_Datefield">
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label" for="J_Timefield"><i class="fa fa-clock-o fa-fw"></i>发现时间</label>
+                    <input type="text" class="form-control input-lg required" id="J_Timefield">
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label" for="J_Dept"><i class="fa fa-calendar fa-fw"></i>科组</label>
+                    <input type="text" class="form-control input-lg required" id="J_Dept">
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label" for="J_Class"><i class="fa fa-calendar fa-fw"></i>班次</label>
+                    <input type="text" class="form-control input-lg required" id="J_Class">
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label" for="J_finder"><i class="fa fa-calendar fa-fw"></i>发现人</label>
+                    <input type="text" class="form-control input-lg required" id="J_finder">
+                  </div>
+                </div>
+                <div class="tab-pane" id="tab2">
+                  <div class="form-group">
+                    <label class="control-label" for="J_Chanel"><i class="fa fa-calendar fa-fw"></i>频道</label>
+                    <input type="text" class="form-control input-lg required" id="J_Chanel">
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label" for="J_Program"><i class="fa fa-calendar fa-fw"></i>节目类型</label>
+                    <input type="text" class="form-control input-lg required" id="J_Program">
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label" for="J_Section"><i class="fa fa-calendar fa-fw"></i>栏目名称</label>
+                    <input type="text" class="form-control input-lg required" id="J_Section">
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label" for="J_Playtime"><i class="fa fa-calendar fa-fw"></i>时间入点</label>
+                    <input type="text" class="form-control input-lg required" id="J_Playtime">
+                  </div>
+                </div>
+                <div class="tab-pane" id="tab3">
+                  <div class="form-group">
+                    <label class="control-label" for="J_Event"><i class="fa fa-calendar fa-fw"></i>事件性质</label>
+                    <input type="text" class="form-control input-lg required" id="J_Event">
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label" for="J_Error"><i class="fa fa-calendar fa-fw"></i>错误类别</label>
+                    <input type="text" class="form-control input-lg required" id="J_Error">
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label" for="J_Question"><i class="fa fa-calendar fa-fw"></i>具体问题</label>
+                    <input type="text" class="form-control input-lg required" id="J_Question">
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label" for="J_Desc"><i class="fa fa-calendar fa-fw"></i>描述补充</label>
+                    <input type="text" class="form-control input-lg required" id="J_Desc">
+                  </div>
+                </div>
+                <ul class="pager wizard">
+                  <li class="previous first" style="display:none;"><a href="#">First</a></li>
+                  <li class="previous"><a href="#">上一项</a></li>
+                  <li class="next last" style="display:none;"><a href="#">Last</a></li>
+                  <li class="next"><a href="#">下一项</a></li>
+                </ul>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-lg-4"></div>
+      </div>
+    </div>
+  </div>
+</div>
 {{/block}}
