@@ -9,7 +9,6 @@ module.exports = (function() {
 		port: 8801,
 		key: 'session key',
 
-
 		db: {
 			host: '127.0.0.1',
 			port: '27017',
