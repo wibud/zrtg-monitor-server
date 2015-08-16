@@ -105,16 +105,12 @@ exports.manage = function* () {
 
 		var users = yield User.find({});
 
-		var result = {};
-
-		result.admin = _.filter(users, {role: 'admin'})[0];
-		result.monitors = _.filter(users, {role: 'monitor'});
-		result.watcher = _.filter(users, {role: 'watcher'});
-		result.tecs = _.filter(users, {role: 'tec'});
-
 		yield this.render('user_manage', {
 			page: 'user_manage',
-			user: result
+			admin: _.filter(users, {role: 'admin'})[0],
+			monitors: _.filter(users, {role: 'monitor'}),
+			watchers: _.filter(users, {role: 'watcher'}),
+			tecs: _.filter(users, {role: 'tec'})
 		});
 
 	} catch(err) {
