@@ -14,6 +14,7 @@ var koaLogger = require('koa-logger');
 var session = require('koa-session');
 var serve = require('koa-static');
 var favicon = require('koa-favicon')
+var mount = require('koa-mount');
 
 var config = require('./config');
 var routes = require('./routes');
@@ -31,6 +32,8 @@ app.on('error', function(err) {
 	log.error(err);
 });
 
+app.use(mount('/assets', serve('./assets/')));
+
 routes(router);
 
 app.use(koaLogger());
@@ -39,7 +42,6 @@ app.use(session(app));
 app.use(bodyParser());
 app.use(favicon(__dirname + '/assets/favicon.ico'));
 
-app.use(serve(__dirname + '/assets/'));
 app.use(router.routes());
 
 app.listen(config.port, function() {

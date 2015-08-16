@@ -4,12 +4,42 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 
+	<!-- Bootstrap Core CSS -->
+	<link href="/assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- MetisMenu CSS -->
+	<link href="/assets/lib/metisMenu/css/metisMenu.min.css" rel="stylesheet">
+
+	<!-- Custom Fonts -->
+	<link href="/assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+	<link rel="stylesheet" href="/assets/build/{{page}}/index.css">
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  	<script src="/assets/lib/html5shim/html5shiv.js"></script>
+  	<script src="/assets/lib/html5shim/respond.min.js"></script>
+  <![endif]-->
+
 </head>
 <body>
 
-{{{include ('./partials/header')}}}
-{{{block ('body')}}}
-{{{include ('./partials/footer')}}}
+{{{include ("./partials/header")}}}
+{{{block ("body")}}}
+{{{include ("./partials/footer")}}}
+
+<!-- jQuery -->
+<script src="/assets/lib/jquery/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="/assets/lib/metisMenu/js/metisMenu.min.js"></script>
+
+<!-- Morris Charts JavaScript -->
+<script src="/assets/lib/raphael/raphael-min.js"></script>
+<script src="/assets/lib/morrisjs/js/morris.min.js"></script>
+
+<script src="/assets/build/{{page}}/index.js"></script>
 
 </body>
 </html>
