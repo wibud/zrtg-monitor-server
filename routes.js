@@ -12,7 +12,7 @@ module.exports = function(router) {
 
 	router.get('/', common.home);
 
-  router.get('/account/', account.index);
+  router.get('/account', account.index);
 
   router.get('*', common.notFound);
 

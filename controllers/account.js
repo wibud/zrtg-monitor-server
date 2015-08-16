@@ -4,6 +4,7 @@
 
 'use strict';
 
+var account = require('../models/account');
 var helper = require('../lib/helper');
 var log = helper.getLogger('account');
 
@@ -11,10 +12,19 @@ var log = helper.getLogger('account');
 /**
  * 账户管理首页
  */
-exports.index = function* () {
+exports.index = function* (next) {
 
-	yield this.render('account', {
+	try {
 
-	});
+		var accounts = yield account.getAll();
+
+		log.debug(accounts);
+
+		yield this.render('account', {
+		});
+
+	} catch(err) {
+		yield helper.handleError(this, err);
+	};
 
 };

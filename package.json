@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/wibud/zrtg-monitor-server#readme",
   "dependencies": {
+    "bluebird": "~2.9.34",
     "koa": "~0.21.0",
     "koa-bodyparser": "~2.0.1",
     "koa-favicon": "~1.2.0",
@@ -25,6 +26,8 @@
     "koa-session": "~3.3.1",
     "koa-static": "~1.4.9",
     "log4js": "~0.6.26",
+    "mongodb": "~1.4.39",
+    "mongoskin": "~1.4.13",
     "xtemplate": "~4.3.1",
     "xtpl": "~3.2.0"
   }

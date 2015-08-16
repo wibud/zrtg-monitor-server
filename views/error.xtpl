@@ -1,0 +1,7 @@
+{{extend ('./layout')}}
+
+{{#block ('body')}}
+<h2>Error</h2>
+<h4>{{err.message}}</h4>
+<p>{{err.stack}}</p>
+{{/block}}

@@ -27,6 +27,9 @@ var app = require('xtpl/lib/koa')(koa(), {
   views: path.resolve(__dirname, './views')
 });
 
+app.on('error', function(err) {
+	log.error(err);
+});
 
 routes(router);
 
