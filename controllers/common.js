@@ -1,5 +1,4 @@
 
-
 exports.home = function* (){
 	yield this.render('home', {
 		page: 'home'
