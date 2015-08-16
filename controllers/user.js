@@ -4,10 +4,10 @@
 
 'use strict';
 
-var user = require('../models/user');
+var User = require('../models/user');
 var helper = require('../lib/helper');
 var log = helper.getLogger('user');
-
+var _ = helper._;
 
 /**
  * 账户管理首页
@@ -22,7 +22,7 @@ exports.login = function* () {
 
 	} catch(err) {
 		yield helper.handleError(this, err);
-	};
+	}
 
 };
 
@@ -33,13 +33,82 @@ exports.manage = function* () {
 
 	try {
 
+		var users = yield User.find({});
+
+		var result = {};
+
+		result.admin = _.filter(users, {role: 'admin'})[0];
+		result.monitors = _.filter(users, {role: 'monitor'});
+		result.watcher = _.filter(users, {role: 'watcher'});
+		result.tecs = _.filter(users, {role: 'tec'});
+
 		yield this.render('user_manage', {
-			page: 'user_manage'
+			page: 'user_manage',
+			user: result
 		});
 
 	} catch(err) {
 		yield helper.handleError(this, err);
-	};
+	}
 
+
+};
+
+
+/**
+ * 新增用户
+ */
+exports.new = function* () {
+
+	try {
+
+		yield User.new({
+			name: this.query.name,
+			password: this.query.password,
+			role: this.query.role
+		});
+
+		this.body = {status: 1};
+
+	} catch(err) {
+		yield helper.handleError(this, err, true);
+	}
+
+};
+
+
+/**
+ * 删除用户
+ */
+exports.remove = function* () {
+
+	try {
+
+		yield User.remove({
+			name: this.query.name
+		});
+
+		this.body = {status: 1};
+
+	} catch(err) {
+		yield helper.handleError(this, err, true);
+	}
+
+};
+
+/**
+ * 编辑用户
+ */
+exports.edit = function* () {
+
+	try {
+
+		yield User.edit(this.query.name, this.query.newName, this.query.newPwd);
+
+		this.body = {status: 1};
+
+	} catch(err) {
+		yield helper.handleError(this, err, true);
+	}
 
 };

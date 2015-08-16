@@ -1,5 +1,15 @@
 {{extend ('./layout')}}
 
 {{#block ('body')}}
+<div id="page-wrapper">
 <h2>账户管理</h2>
+
+<hr>
+
+<h3>管理员</h3>
+
+<p>用户名：{{user.admin.name}}</p>
+<p> 密码：{{user.admin.password}}</p>
+</div>
+
 {{/block}}
