@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>浙江广电集团播出监控系统</title>
 
 	<!-- Bootstrap Core CSS -->
 	<link href="/assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -15,18 +20,24 @@
 
 	<link rel="stylesheet" href="/assets/build/{{page}}/index.css">
 
-	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-  	<script src="/assets/lib/html5shim/html5shiv.js"></script>
-  	<script src="/assets/lib/html5shim/respond.min.js"></script>
-  <![endif]-->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    	<script src="/assets/lib/html5shim/html5shiv.js"></script>
+    	<script src="/assets/lib/html5shim/respond.min.js"></script>
+    <![endif]-->
 
 </head>
 <body>
 
-{{{include ("./partials/header")}}}
-{{{block ("body")}}}
-{{{include ("./partials/footer")}}}
+{{#if (page==='user_login')}}
+    {{{block ("body")}}}
+{{else}}
+    <div id="wrapper">
+        {{{include ("./partials/header")}}}
+        {{{block ("body")}}}
+        {{{include ("./partials/footer")}}}
+    </div>
+{{/if}}
 
 <!-- jQuery -->
 <script src="/assets/lib/jquery/jquery.min.js"></script>
@@ -35,9 +46,10 @@
 <!-- Metis Menu Plugin JavaScript -->
 <script src="/assets/lib/metisMenu/js/metisMenu.min.js"></script>
 
-<!-- Morris Charts JavaScript -->
-<script src="/assets/lib/raphael/raphael-min.js"></script>
-<script src="/assets/lib/morrisjs/js/morris.min.js"></script>
+{{#if (page==='record_new')}}
+    <script src="/assets/lib/wizard/jquery.validate.min.js"></script>
+    <script src="/assets/lib/wizard/jquery.bootstrap.wizard.min.js"></script>
+{{/if}}
 
 <script src="/assets/build/{{page}}/index.js"></script>
 
