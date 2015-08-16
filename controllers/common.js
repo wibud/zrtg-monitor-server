@@ -1,7 +1,7 @@
 
 
 exports.home = function* (){
-	this.body = 'Home';
+	yield this.render('home');
 };
 
 exports.notFound = function* () {

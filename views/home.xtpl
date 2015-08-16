@@ -1,0 +1,14 @@
+
+
+{{extend ('./layout')}}
+
+{{#block ('body')}}
+
+<a href="/user/login">登录</a>
+<a href="/user/manage">用户管理</a>
+<a href="/record/show">显示记录</a>
+<a href="/record/new">新增记录</a>
+<a href="/resource/manage">管理账户</a>
+
+
+{{/block}}
