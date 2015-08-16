@@ -27,7 +27,7 @@ var EXAMPLE_DIST_PATH = [__dirname];
 // clean
 gulp.task('clean', function(){
     return gulp.src(BUILD, {read: false})
-            // .pipe(rimraf({force: true}));
+               .pipe(rimraf({force: true}));
 });
 
 // js
