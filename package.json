@@ -4,7 +4,8 @@
   "description": "播出监控系统-server端",
   "main": "index.js",
   "scripts": {
-    "start": "mongod --dbpath='./db';nodemon app.js && gulp dev"
+    "start": "nodemon app.js",
+    "mongo": "mongod --dbpath='./db'"
   },
   "repository": {
     "type": "git",
