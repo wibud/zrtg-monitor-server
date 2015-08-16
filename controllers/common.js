@@ -6,6 +6,7 @@ exports.home = function* (){
 
 exports.notFound = function* () {
 
+	this.status = 400;
 	yield this.render('404');
 
 };

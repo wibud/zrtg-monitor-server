@@ -16,8 +16,8 @@ var rimraf = require('gulp-rimraf');
 var connect = require('gulp-connect');
 
 // 常量
-var SRC = './web/src';
-var BUILD = './web/build';
+var SRC = './assets/src';
+var BUILD = './assets/build';
 var SCRIPTS = SRC + '/p/*/index.js';
 var RESOURCE = SRC + '/lib/**/*';
 var CSS = SRC + '/p/*/index.less';
@@ -73,12 +73,6 @@ gulp.task('js', ['clean'],function(){
     });
 });
 
-gulp.task('copy', ['clean'], function(){
-
-    return gulp.src(RESOURCE)
-            .pipe(gulp.dest(BUILD + '/lib'));
-});
-
 // css
 gulp.task('css', ['clean'], function(){
     return gulp.src(CSS)
@@ -95,25 +89,14 @@ gulp.task('css', ['clean'], function(){
 });
 
 // build
-gulp.task('build', ['clean', 'copy', 'css' ,'js']);
+gulp.task('build', ['clean', 'css' ,'js']);
 
 // watch
 gulp.task('watch', function(){
     gulp.watch(ASSETS, ['build']);
 });
 
-gulp.task('dev:server', function() {
-    connect.server({
-        root: EXAMPLE_DIST_PATH,
-        port: 9999,
-        livereload: true
-    });
-});
-
-gulp.task('dev', [
-    'dev:server',
-    'watch'
-]);
+gulp.task('dev', ['watch']);
 
 // default task
 gulp.task('default', ['build']);
