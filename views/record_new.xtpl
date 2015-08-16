@@ -17,7 +17,7 @@
                     <strong>注意!</strong> 提交前请复查，一旦提交不能修改
                 </div>
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-8">
                         <form id="commentForm" method="get" action="">
                             <div id="rootwizard">
                                 <ul>
