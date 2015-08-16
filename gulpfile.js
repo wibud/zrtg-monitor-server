@@ -53,7 +53,7 @@ gulp.task('js', ['clean'],function(){
                 .on('error', function (err) {
                     // ignore react or browserify error
                     if (!isLogError) {
-                        gutil.log(err.stack);
+                        gutil.log(err);
                         isLogError = true;
                     }
                 })

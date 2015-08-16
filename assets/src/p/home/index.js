@@ -1,2 +1,2 @@
 // 加载Global
-require('../../c/global/global');
+require('../../c/global/global.js');

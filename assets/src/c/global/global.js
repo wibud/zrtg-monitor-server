@@ -2,6 +2,26 @@ $(function() {
 
     $('#side-menu').metisMenu();
 
+
+    // 登出按钮
+    $('.J_GoLogout').on('click', function() {
+        $.ajax({
+            type: 'get',
+            url: '/user/logout',
+            data: {},
+            success: function(res) {
+                if (res.status != 1) {
+                    alert(res.message);
+                } else {
+                    location.href = '/user/login';
+                }
+            },
+            error: function(err) {
+                console.error(err);
+            }
+        });
+    });
+
 });
 
 //Loads the correct sidebar on window load,

@@ -51,6 +51,26 @@ db.connect(function(err, db) {
 	app.use(bodyParser());
 	app.use(favicon(__dirname + '/assets/favicon.ico'));
 
+	// 登录
+	app.use(function* (next) {
+
+		if (/assets|user\/login|loginCheck/.test(this.path)) {
+			// 静态资源和登录页面不需要验证 session
+			return yield next;
+		}
+
+		if (this.session.user && this.session.user.name) {
+
+			// session 存在，已登录
+			this.state.user = this.session.user
+
+			return yield next;
+		}
+
+		return this.redirect('/user/login');
+
+	});
+
 	app.use(router.routes());
 
 	app.listen(config.port, function() {

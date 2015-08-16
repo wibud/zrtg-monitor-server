@@ -16,7 +16,12 @@ module.exports = function(router) {
 	router.get('/', common.home);
 
   router.get('/user/login', user.login);
+  router.get('/user/logout', user.logout);
+  router.post('/user/loginCheck', user.loginCheck);
   router.get('/user/manage', user.manage);
+  router.post('/user/new', user.new);
+  router.delete('/user/remove', user.remove);
+  router.get('/user/edit', user.edit);
 
   router.get('/record/show', record.show);
   router.get('/record/new', record.new);
