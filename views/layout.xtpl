@@ -2,12 +2,12 @@
 <html>
 <head>
 	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>浙江广电集团播出监控系统</title>
+  <title>浙江广电集团播出监控系统</title>
 
 	<!-- Bootstrap Core CSS -->
 	<link href="/assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -32,13 +32,13 @@
 <body>
 
 {{#if (page==='user_login')}}
-    {{{block ("body")}}}
+  {{{block ("body")}}}
 {{else}}
-    <div id="wrapper">
-        {{{include ("./partials/header")}}}
-        {{{block ("body")}}}
-        {{{include ("./partials/footer")}}}
-    </div>
+  <div id="wrapper">
+    {{{include ("./partials/header")}}}
+    {{{block ("body")}}}
+    {{{include ("./partials/footer")}}}
+  </div>
 {{/if}}
 
 <!-- jQuery -->
@@ -49,12 +49,12 @@
 <script src="/assets/lib/metisMenu/js/metisMenu.min.js"></script>
 
 {{#if (page==='record_new')}}
-    <script src="/assets/lib/wizard/jquery.validate.min.js"></script>
-    <script src="/assets/lib/wizard/jquery.bootstrap.wizard.min.js"></script>
+  <script src="/assets/lib/wizard/jquery.validate.min.js"></script>
+  <script src="/assets/lib/wizard/jquery.bootstrap.wizard.min.js"></script>
 {{/if}}
 
 {{#if(page)}}
-<script src="/assets/build/{{page}}/index.js"></script>
+  <script src="/assets/build/{{page}}/index.js"></script>
 {{/if}}
 
 </body>

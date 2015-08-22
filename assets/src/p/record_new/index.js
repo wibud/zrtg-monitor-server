@@ -1,3 +1,7 @@
+// 加载Global
+require('../../c/global/global.js');
+
+
 $(document).ready(function() {
 
   // 表单校验

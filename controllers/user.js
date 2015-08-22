@@ -16,12 +16,82 @@ exports.login = function* () {
 
 	try {
 
+		if (this.session.user && this.session.user.name) {
+			this.redirect('/');
+		}
+
 		yield this.render('user_login', {
 			page: 'user_login'
 		});
 
 	} catch(err) {
 		yield helper.handleError(this, err);
+	}
+
+};
+
+/**
+ * 登出
+ */
+exports.logout = function* () {
+
+	try {
+
+		this.session = null;
+		this.body = {status: 1};
+
+	} catch(err) {
+		yield helper.handleError(this, err, true);
+	}
+
+};
+
+
+/**
+ * 登录验证
+ */
+exports.loginCheck = function* () {
+
+	try {
+
+		var name = this.request.body.name.trim();
+		var password = this.request.body.password.trim();
+
+		var users = yield User.find({name: name});
+
+		if (users.length === 0) {
+			this.body = {status: -1, message: '该用户帐号不存在'};
+		} else {
+
+			var user = users[0];
+
+			if (password.trim() === user.password) {
+
+				this.session.user = {
+					name: user.name,
+					role: user.role
+				};
+
+				// views 里可以直接访问
+				this.state.user = {
+					name: user.name,
+					role: user.role
+				};
+
+				// this.
+				this.body = {status: 1};
+
+			} else {
+
+				this.body = {status: -1, message: '密码错误'};
+
+			}
+
+		}
+
+	} catch(err) {
+		log.error(err);
+		yield helper.handleError(this, err, true);
 	}
 
 };
@@ -35,16 +105,12 @@ exports.manage = function* () {
 
 		var users = yield User.find({});
 
-		var result = {};
-
-		result.admin = _.filter(users, {role: 'admin'})[0];
-		result.monitors = _.filter(users, {role: 'monitor'});
-		result.watcher = _.filter(users, {role: 'watcher'});
-		result.tecs = _.filter(users, {role: 'tec'});
-
 		yield this.render('user_manage', {
 			page: 'user_manage',
-			user: result
+			admin: _.filter(users, {role: 'admin'})[0],
+			monitors: _.filter(users, {role: 'monitor'}),
+			watchers: _.filter(users, {role: 'watcher'}),
+			tecs: _.filter(users, {role: 'tec'})
 		});
 
 	} catch(err) {

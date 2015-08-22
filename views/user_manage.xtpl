@@ -8,8 +8,8 @@
 
 <h3>管理员</h3>
 
-<p>用户名：{{user.admin.name}}</p>
-<p> 密码：{{user.admin.password}}</p>
+<p>用户名：{{admin.name}}</p>
+<p> 密码：{{admin.password}}</p>
 </div>
 
 {{/block}}

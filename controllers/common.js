@@ -1,8 +1,13 @@
+var helper = require('../lib/helper');
+var log = helper.getLogger('user');
+var _ = helper._;
 
 exports.home = function* (){
+
 	yield this.render('home', {
-        page: 'home'
-    });
+		page: 'home'
+	});
+
 };
 
 exports.notFound = function* () {
