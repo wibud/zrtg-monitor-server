@@ -15,6 +15,7 @@ module.exports = function(router) {
 
 	router.get('/', common.home);
 
+  // 用户相关
   router.get('/user/login', user.login);
   router.get('/user/logout', user.logout);
   router.post('/user/loginCheck', user.loginCheck);
@@ -26,8 +27,14 @@ module.exports = function(router) {
   router.get('/record/show', record.show);
   router.get('/record/new', record.new);
 
-  router.get('/resource/manage', resource.manage);
 
+  // 资源相关：如增加错误类型，频道等
+  router.get('/resource/manage', resource.manage);
+  router.get('/resource/get', resource.get);
+  router.get('/resource/new', resource.new);
+  router.get('/resource/remove', resource.remove);
+
+  // 404
   router.get('*', common.notFound);
 
 };

@@ -41,7 +41,7 @@ exports.logout = function* () {
 		this.body = {status: 1};
 
 	} catch(err) {
-		yield helper.handleError(this, err, true);
+		yield helper.handleError(this, err, 'json');
 	}
 
 };
@@ -91,7 +91,7 @@ exports.loginCheck = function* () {
 
 	} catch(err) {
 		log.error(err);
-		yield helper.handleError(this, err, true);
+		yield helper.handleError(this, err, 'json');
 	}
 
 };
@@ -137,7 +137,7 @@ exports.new = function* () {
 		this.body = {status: 1};
 
 	} catch(err) {
-		yield helper.handleError(this, err, true);
+		yield helper.handleError(this, err, 'json');
 	}
 
 };
@@ -157,7 +157,7 @@ exports.remove = function* () {
 		this.body = {status: 1};
 
 	} catch(err) {
-		yield helper.handleError(this, err, true);
+		yield helper.handleError(this, err, 'json');
 	}
 
 };
@@ -169,12 +169,12 @@ exports.edit = function* () {
 
 	try {
 
-		yield User.edit(this.query.name, this.query.newName, this.query.newPwd);
+		yield User.edit(this.query.name, this.query.newName, this.query.newPwd, this.query.newRole);
 
 		this.body = {status: 1};
 
 	} catch(err) {
-		yield helper.handleError(this, err, true);
+		yield helper.handleError(this, err, 'json');
 	}
 
 };
