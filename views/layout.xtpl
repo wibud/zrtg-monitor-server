@@ -18,6 +18,11 @@
 	<!-- Custom Fonts -->
 	<link href="/assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+  {{#if (page==='user_manage')}}
+    <link href="/assets/lib/datatables-plugins/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="/assets/lib/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet" type="text/css">
+  {{/if}}
+
 	{{#if(page)}}
 	<link rel="stylesheet" href="/assets/build/{{page}}/index.css">
 	{{/if}}
@@ -51,6 +56,11 @@
 {{#if (page==='record_new')}}
   <script src="/assets/lib/wizard/jquery.validate.min.js"></script>
   <script src="/assets/lib/wizard/jquery.bootstrap.wizard.min.js"></script>
+{{/if}}
+
+{{#if (page==='user_manage')}}
+  <script src="/assets/lib/datatables/js/jquery.dataTables.min.js"></script>
+  <script src="/assets/lib/datatables-plugins/js/dataTables.bootstrap.min.js"></script>
 {{/if}}
 
 {{#if(page)}}
