@@ -54,3 +54,15 @@ $(function() {
         element.addClass('active');
     }
 });
+
+var Global = {
+
+    alert: function(message) {
+
+        alert(message);
+    }
+};
+
+window.Global = Global;
+
+module.exports = Global;
