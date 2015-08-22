@@ -29,8 +29,6 @@ exports.manage = function* () {
       result[item.type + 's'] = item.list;
     });
 
-    log.debug(111, JSON.stringify(result));
-
 		yield this.render('resource_manage', _.assign({
 			page: 'resource_manage'
 		}, result));

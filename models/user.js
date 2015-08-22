@@ -39,6 +39,8 @@ exports.new = function(user) {
 
 	var self = this;
 
+  log.debug('新增用户：', user);
+
 	user.name = _.isString(user.name) ? user.name.trim() : user.name;
 	user.password = _.isString(user.password) ? user.password.trim() : user.password;
 
@@ -51,7 +53,7 @@ exports.new = function(user) {
             .then(function(isExist) {
 
               if (isExist) {
-                resolve(new Error('用户名已存在'));
+                throw new Error('用户名已存在');
               }
 
               return db.insert(dbName, user);
@@ -126,14 +128,14 @@ exports.remove = function(query) {
 
 exports.isExist = function(name) {
 
-	this
-		.find({})
-		.then(function(users) {
+	return this
+      		.find({})
+      		.then(function(users) {
 
-			var index = _.findIndex(users, {name: name});
+      			var index = _.findIndex(users, {name: name});
 
-			return index !== -1;
+      			return index !== -1;
 
-		});
+      		});
 
 };
