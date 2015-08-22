@@ -57,24 +57,30 @@ exports.new = function(type, name) {
 
   log.debug('新增 resource, type: %s, name: %s', type, name);
 
-  this
+  return this
     .find({type: type})
     .then(function(result) {
 
-      if (!result || result.list.length === 0) {
+      if (result.length === 0) {
 
         // 类型数据为空
         return db.insert(dbName, {type: type,list: [{name: name}]});
 
       } else {
 
-        var list = result.list;
+        var list = result[0].list;
 
-        if (list.indexOf(name) !== -1) {
+        log.debug(JSON.stringify(list), name)
+
+        var index = _.findIndex(list, function(item) {
+          return item.name === name;
+        });
+
+        if (index !== -1) {
           throw new Error(type + '类型下已存在名称为' + name);
         }
 
-        list.push(name);
+        list.push({name: name});
 
         return db.update(dbName, {type: type}, {$set: {
           list: list
@@ -96,15 +102,16 @@ exports.new = function(type, name) {
  */
 exports.remove = function(type, name) {
 
-  db
+
+  return db
     .find(dbName, {type, type})
     .then(function(result) {
 
-      if (!result || result.list.length === 0) {
+      if (result.length === 0) {
         throw new Error('该条数据不存在');
       }
 
-      var list = result.list;
+      var list = result[0].list;
 
       _.remove(list, function(item) {
         return item.name === name;

@@ -1,7 +1,58 @@
-<!-- 资源管理 -->
-
 {{extend ('./layout')}}
 
 {{#block ('body')}}
-<h2>资源管理</h2>
+<div id="page-wrapper">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">资源管理</h1>
+    </div>
+  </div>
+  {{#if (user.role !== 'admin')}}
+    <div class="alert alert-danger" role="alert">对不起，您没有权限访问该页面</div>
+  {{else}}
+    <div class="row">
+        <div class="col-lg-12">
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              频道列表
+              <div class="pull-right">
+                <button type="button" class="btn btn-success J_AddResource" data-type='channel' data-toggle="modal" data-target="#J_AddResourceModal">添加频道</button>
+              </div>
+            </div>
+            <div class="panel-body">
+            {{#if( channels.length === 0 )}}
+              <p class="alert alert-danger" role="alert">暂时还没有频道数据，点击右边的按钮添加吧</p>
+            {{/if}}
+            {{#each(channels)}}
+              <span class="label label-info">{{this.name}}</span>
+            {{/each}}
+            </div>
+          </div>
+
+        </div>
+    </div>
+  {{/if}}
+</div>
+
+<div class="modal fade" id="J_AddResourceModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"></h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <input type="hidden" class="J_ResourceType" value="">
+          <input type="text" class="form-control J_ResourceName" placeholder="名称">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary J_ModalSure">确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 {{/block}}

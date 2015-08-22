@@ -21,12 +21,11 @@ module.exports = function(router) {
   router.post('/user/loginCheck', user.loginCheck);
   router.get('/user/manage', user.manage);
   router.post('/user/new', user.new);
-  router.delete('/user/remove', user.remove);
+  router.get('/user/remove', user.remove);
   router.get('/user/edit', user.edit);
 
   router.get('/record/show', record.show);
   router.get('/record/new', record.new);
-
 
   // 资源相关：如增加错误类型，频道等
   router.get('/resource/manage', resource.manage);

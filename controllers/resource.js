@@ -6,6 +6,7 @@
 
 var Resource = require('../models/resource');
 var helper = require('../lib/helper');
+var _ = helper._;
 var log = helper.getLogger('resource');
 
 
@@ -16,12 +17,23 @@ exports.manage = function* () {
 
 	try {
 
-    var resource = Resource.find({});
+    var resource = yield Resource.find({});
+    var result = {
+      channels: [],
+      errors: [],
+      programs: [],
+      groups: []
+    };
 
-		yield this.render('resource_manage', {
-			page: 'resource_manage',
-      resources: resource
-		});
+    resource.forEach(function(item) {
+      result[item.type + 's'] = item.list;
+    });
+
+    log.debug(111, JSON.stringify(result));
+
+		yield this.render('resource_manage', _.assign({
+			page: 'resource_manage'
+		}, result));
 
 	} catch(err) {
 		yield helper.handleError(this, err);
@@ -46,7 +58,7 @@ exports.get = function* () {
     };
 
   } catch(err) {
-    yield helper.handleError(this, err, json);
+    yield helper.handleError(this, err, 'json');
   };
 
 };
@@ -66,7 +78,7 @@ exports.new = function* () {
     };
 
   } catch(err) {
-    yield helper.handleError(this, err, json);
+    yield helper.handleError(this, err, 'json');
   };
 
 };
@@ -85,7 +97,7 @@ exports.remove = function* () {
     };
 
   } catch(err) {
-    yield helper.handleError(this, err, json);
+    yield helper.handleError(this, err, 'json');
   };
 
 };
