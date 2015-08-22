@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-lg-12">
 
-          <div class="panel panel-default">
+          <div class="panel panel-default resource-item channel" data-type="channel">
             <div class="panel-heading">
               频道列表
               <div class="pull-right">
@@ -25,7 +25,41 @@
               <p class="alert alert-danger" role="alert">暂时还没有频道数据，点击右边的按钮添加吧</p>
             {{/if}}
             {{#each(channels)}}
-              <span class="label label-info">{{this.name}}</span>
+              <span class="label label-info">{{this.name}}<span class="remove-btn J_ResourceRemove" data-name="{{this.name}}">x</span></span>
+            {{/each}}
+            </div>
+          </div>
+
+          <div class="panel panel-default resource-item group" data-type="group">
+            <div class="panel-heading">
+              科组列表
+              <div class="pull-right">
+                <button type="button" class="btn btn-success J_AddResource" data-type='group' data-toggle="modal" data-target="#J_AddResourceModal">添加科组</button>
+              </div>
+            </div>
+            <div class="panel-body">
+            {{#if(groups.length === 0)}}
+              <p class="alert alert-danger" role="alert">暂时还没有科组数据，点击右边的按钮添加吧</p>
+            {{/if}}
+            {{#each(groups)}}
+              <span class="label label-info">{{this.name}}<span class="remove-btn J_ResourceRemove" data-name="{{this.name}}">x</span></span>
+            {{/each}}
+            </div>
+          </div>
+
+          <div class="panel panel-default resource-item program" data-type="program">
+            <div class="panel-heading">
+              节目类型
+              <div class="pull-right">
+                <button type="button" class="btn btn-success J_AddResource" data-type='program' data-toggle="modal" data-target="#J_AddResourceModal">添加节目类型</button>
+              </div>
+            </div>
+            <div class="panel-body">
+            {{#if(programs.length === 0 )}}
+              <p class="alert alert-danger" role="alert">暂时还没有节目类型，点击右边的按钮添加吧</p>
+            {{/if}}
+            {{#each(programs)}}
+              <span class="label label-info">{{this.name}}<span class="remove-btn J_ResourceRemove" data-name="{{this.name}}">x</span></span>
             {{/each}}
             </div>
           </div>

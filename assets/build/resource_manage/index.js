@@ -8,6 +8,7 @@ var resource = {
 
   init: function() {
 
+    this.modal = $('#J_AddResourceModal');
     this.bindEvent();
 
   },
@@ -16,7 +17,7 @@ var resource = {
 
     var self = this;
 
-    $('#J_AddResourceModal').on('show.bs.modal', function (e) {
+    this.modal.on('show.bs.modal', function (e) {
 
       var btn = $(e.relatedTarget);
       var type = btn.data('type');
@@ -27,30 +28,59 @@ var resource = {
 
     });
 
-    var $modalSureBtn = $('.J_ModalSure');
-
-    $modalSureBtn.on('click', function() {
+    $('.J_ModalSure').on('click', function() {
 
       var $modal = $('#J_AddResourceModal');
 
       var type = $modal.find('.J_ResourceType').val().trim();
       var name = $modal.find('.J_ResourceName').val().trim();
 
-      self.add(type, name);
+      self.action('new', type, name, function() {
+
+        var $panel = $('.resource-item.' + type);
+        var itemHTML = '<span class="label label-info">'
+                + name
+                + '<span class="remove-btn J_ResourceRemove" data-name="'
+                + name
+                + '">x</span></span>';
+
+        $panel.find('.panel-body .alert-danger').remove();
+        $panel.find('.panel-body').append(itemHTML);
+
+        self.modal.modal('hide');
+      });
+
+    });
+
+    $('.resource-item').on('click', function(e) {
+
+      var $target = $(e.target);
+
+      if ($target.hasClass('J_ResourceRemove')) {
+
+        var type = $target.parents('.resource-item').attr('data-type');
+        var name = $target.attr('data-name');
+
+        self.action('remove', type, name, function() {
+          $target.parent('.label').fadeOut();
+        });
+      }
 
     });
 
   },
 
 
-  add: function(type, name) {
+  action: function(action, type, name, callback) {
+
+    var self = this;
 
     if (!type || !name) {
       return;
     }
 
     $.ajax({
-      url: '/resource/new',
+      url: '/resource/' + action,
       data: {
         type: type,
         name: name,
@@ -60,20 +90,18 @@ var resource = {
 
         if (res.status !== 1) {
 
-          alert(res.message);
+          Global.alert(res.message);
 
         } else {
-           location.reload();
+          callback(null);
         }
 
       },
       error: function(err) {
-        alert(err.message);
+        Global.alert(err.message);
       }
     })
-
-
-  }
+  },
 
 };
 
@@ -144,8 +172,27 @@ var Global = {
 
     alert: function(message) {
 
-        alert(message);
+      var $alert = $('.J_GlobalAlert');
+
+      if ($alert.length === 0) {
+        $('body').append('<p class="global-alert J_GlobalAlert"></p>');
+        $alert = $('.J_GlobalAlert');
+      }
+
+      $alert.html(message);
+
+      setTimeout(function() {
+
+        $alert.addClass('active');
+
+        setTimeout(function() {
+          $alert.removeClass('active');
+        }, 2000);
+
+      }, 0);
+
     }
+
 };
 
 window.Global = Global;

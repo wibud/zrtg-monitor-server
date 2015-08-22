@@ -358,3 +358,26 @@ table.dataTable thead .sorting:after {
 .panel-heading .pull-right {
   margin-top: -7px;
 }
+
+
+.global-alert {
+
+  height: 40px;
+  line-height: 40px;
+  padding: 0 20px;
+  color: #fff;
+  background-color: #f40;
+
+  position: fixed;
+  top: 100px;
+  right: 0;
+  z-index: 2000;
+
+  transition: all 0.3s;
+  transform: translateX(300px);
+
+  &.active {
+    transform: translateX(0);
+  }
+
+}

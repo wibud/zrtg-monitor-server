@@ -59,8 +59,27 @@ var Global = {
 
     alert: function(message) {
 
-        alert(message);
+      var $alert = $('.J_GlobalAlert');
+
+      if ($alert.length === 0) {
+        $('body').append('<p class="global-alert J_GlobalAlert"></p>');
+        $alert = $('.J_GlobalAlert');
+      }
+
+      $alert.html(message);
+
+      setTimeout(function() {
+
+        $alert.addClass('active');
+
+        setTimeout(function() {
+          $alert.removeClass('active');
+        }, 2000);
+
+      }, 0);
+
     }
+
 };
 
 window.Global = Global;
