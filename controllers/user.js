@@ -134,9 +134,9 @@ exports.new = function* () {
 	try {
 
 		yield User.new({
-			name: this.request.body.name,
-			password: this.request.body.password,
-			role: this.request.body.role
+			name: this.request.body.newName,
+			password: this.request.body.newPwd,
+			role: this.request.body.newRole
 		});
 
 		this.body = {status: 1};
