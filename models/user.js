@@ -1,5 +1,17 @@
 /**
  * 账户管理
+ *
+ * model:
+ * [
+ *   // 管理员
+ *   {role: 'admin', name: 'xxx', password: 'xxx'},
+ *   // 值班长
+ *   {role: 'monitors', name: 'xxx', password: 'xxx'},
+ *   // 值班员
+ *   {role: 'watchers', name: 'xxx', password: 'xxx'},
+ *   // 技术人员
+ *   {role: 'tecs', name: 'xxx', password: 'xxx'},
+ * ]
  */
 'use strict';
 
@@ -10,47 +22,13 @@ var _ = helper._;
 var log = helper.getLogger('Account');
 var db = helper.db;
 
-db.bind('users');
+var dbName = 'users';
 
 /**
  * 获取所有的账户数据
  */
 exports.find = function(query) {
-
-	var self = this;
-
-	if (query._id) {
-		query._id = helper.toObjectID(query._id);
-	}
-
-	return new Promise(function(resolve, reject) {
-
-		db.users.find(query).toArray(function(err, data) {
-			return err ? reject(err) : resolve(data);
-		});
-
-	});
-
-};
-
-
-/**
- * 更新
- */
-exports.update = function(query, newData) {
-
-	if (query._id) {
-		query._id = helper.toObjectID(query._id);
-	}
-
-	return new Promise(function(resolve, reject) {
-
-		db.users.update(query, newData, function(err) {
-			return err ? reject(err) : resolve(data);
-		});
-
-	});
-
+  return db.find(dbName, query);
 };
 
 
@@ -61,29 +39,23 @@ exports.new = function(user) {
 
 	var self = this;
 
-	return new Promise(function(resolve, reject) {
+	user.name = _.isString(user.name) ? user.name.trim() : user.name;
+	user.password = _.isString(user.password) ? user.password.trim() : user.password;
 
-		user.name = _.isString(user.name) ? user.name.trim() : user.name;
-		user.password = _.isString(user.password) ? user.password.trim() : user.password;
+	if (!user || !user.name || user.name === '' || !user.password || user.password === '') {
+		throw new Error('参数不全：name, password, role');
+	}
 
-		if (!user || !user.name || user.name === '' || !user.password || user.password === '') {
-			return reject(new Error('参数不全：name, password, role'));
-		}
+  return self
+            .isExist(user.name)
+            .then(function(isExist) {
 
-		self
-			.isExist(user.name)
-			.then(function(isExist) {
+              if (isExist) {
+                resolve(new Error('用户名已存在'));
+              }
 
-				if (isExist) {
-					resolve(new Error('用户名已存在'));
-				}
-
-				db.users.insert(user, function(err) {
-					err? reject(err): resolve();
-				});
-			});
-
-	});
+              return db.insert(dbName, user);
+            });
 
 };
 
@@ -91,35 +63,41 @@ exports.new = function(user) {
 /**
  * 编辑用户的账户名或密码
  */
-exports.edit = function(name, newName, newPwd) {
+exports.edit = function(name, newName, newPwd, newRole) {
 
 	var self = this;
 	var newData = {};
 
 	newName = _.isString(newName) ? newName.trim() : newName;
 	newPwd = _.isString(newPwd) ? newPwd.trim() : newPwd;
+  newRole = _.isString(newRole) ? newRole.trim() : newRole;
 
 	var promise = new Promise(function(resolve, reject) {
 		resolve(1);
 	});
 
-	if ((!newName || newName === '') && (!newPwd || newPwd === '')) {
+	if ((!newName || newName === '') && (!newPwd || newPwd === '') && (!newRole || newRole === '')) {
 
 		promise.then(function() {
-			throw new Error('参数不全：用户名/密码');
+			throw new Error('参数不全：用户名/密码/职位');
 		});
 
 	}
 
 	var newData = {};
 
-	if (newData) {
+	if (newName && newName.length > 0) {
 		newData.name = newName;
 	}
 
-	if (newPwd) {
+	if (newPwd && newPwd.length > 0) {
 		newData.password = newPwd;
 	}
+
+  if (newRole && newRole.length > 0) {
+    newData.newRole = newRole;
+  }
+
 
 	promise
 		.then(function(datas) {
@@ -131,7 +109,7 @@ exports.edit = function(name, newName, newPwd) {
 				throw new Error('该用户名已存在');
 			}
 
-			return self.update({name: name}, {$set: newData});
+			return db.update(dbName, {name: name}, {$set: newData});
 
 		});
 
@@ -142,15 +120,7 @@ exports.edit = function(name, newName, newPwd) {
  * 删除用户
  */
 exports.remove = function(query) {
-
-	if (query._id) {
-		query._id = helper.toObjectID(query._id);
-	}
-
-	db.users.remove(query, function(err) {
-		err ? reject(err): resolve();
-	});
-
+  return db.remove(dbName, query);
 };
 
 
