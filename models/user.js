@@ -101,9 +101,9 @@ exports.edit = function(name, newName, newPwd, newRole) {
   }
 
 
-	promise
+	return promise
 		.then(function(datas) {
-			return newName ? self.isExist(newData.name) : false;
+			return newName && name !== newName ? self.isExist(newData.name) : false;
 		})
 		.then(function(isExist) {
 
