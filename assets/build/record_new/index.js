@@ -121,4 +121,16 @@ $(function() {
     }
 });
 
+var Global = {
+
+    alert: function(message) {
+
+        alert(message);
+    }
+};
+
+window.Global = Global;
+
+module.exports = Global;
+
 },{}]},{},[1]);

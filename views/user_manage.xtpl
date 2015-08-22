@@ -16,7 +16,7 @@
                 <div class="panel-heading">
                     用户列表
                     <div class="pull-right">
-                        <button type="button" class="btn btn-success btn-adduser" data-toggle="modal" data-target="#J_Modal" data-title="添加用户">添加用户</button>
+                        <button type="button" class="btn btn-success btn-adduser" data-toggle="modal" data-target="#J_Modal" data-title="添加用户" data-type="add">添加用户</button>
                     </div>
                 </div>
                 <!-- /.panel-heading -->
@@ -47,8 +47,8 @@
                                         </td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#J_Modal" data-title="编辑用户" data-name="{{name}}" data-pswd="{{password}}" data-role="{{role}}">编辑</button>
-                                              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#J_DelModal">删除</button>
+                                              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#J_Modal" data-title="编辑用户" data-name="{{name}}" data-pswd="{{password}}" data-role="{{role}}" data-type="edit">编辑</button>
+                                              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#J_DelModal" data-name="{{name}}">删除</button>
                                             </div>
                                         </td>
                                     </tr>
@@ -72,19 +72,18 @@
                 <div class="modal-body">
                     <form role="form">
                         <div class="form-group">
-                            <label>姓名</label>
+                            <label class="control-label" for="J_InputName">姓名</label>
                             <input id="J_InputName" class="form-control" type="text" placeholder="请输入用户姓名">
                         </div>
                         <div class="form-group">
-                            <label>密码</label>
+                            <label class="control-label" for="J_InputPswd">密码</label>
                             <input id="J_InputPswd" class="form-control" type="text" placeholder="请输入用户密码">
                         </div>
                         <div class="form-group" id="J_InputRoleWrap">
                             <label>身份</label>
                             <select id="J_InputRole" class="form-control">
-                                <option value="admin">管理员</option>
-                                <option value="monitor">值班长</option>
                                 <option value="watcher">值班员</option>
+                                <option value="monitor">值班长</option>
                                 <option value="tec">技术员</option>
                             </select>
                         </div>
@@ -92,7 +91,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary">保存</button>
+                    <button type="button" class="btn btn-primary J_Save">保存</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -113,7 +112,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary">确定</button>
+                    <button type="button" class="btn btn-primary" id="J_Remove">确定</button>
                 </div>
             </div>
             <!-- /.modal-content -->
