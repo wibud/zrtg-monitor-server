@@ -168,7 +168,7 @@ var UserManager = {
                     return;
                 }
 
-                var tr = '<div class="btn-group" role="group"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#J_Modal" data-title="编辑用户" data-name="' + name + '" data-pswd="' + pswd + '" data-role="' + role + '" data-type="edit">编辑</button><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#J_DelModal" data-name="'+ name +'">删除</button></div>';
+                var tr = '<div class="btn-group" role="group"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#J_Modal" data-title="编辑用户" data-name="' + name + '" data-pswd="' + pswd + '" data-role="' + role + '" data-type="edit"><i class="fa fa-edit"></i></button><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#J_DelModal" data-name="'+ name +'"><i class="fa fa-trash"></i></button></div>';
 
                 if(type == 'add') {
 

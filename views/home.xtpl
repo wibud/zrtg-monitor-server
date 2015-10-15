@@ -1,93 +1,83 @@
 {{extend ('./layout')}}
 
 {{#block ('body')}}
-<div id="page-wrapper">
-  <div class="row">
-    <div class="col-lg-12">
-      <h1 class="page-header">首页</h1>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-3 col-md-6">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <div class="row">
-            <div class="col-xs-3">
-              <i class="fa fa-edit fa-5x"></i>
-            </div>
-            <div class="col-xs-9 text-right">
-            </div>
-          </div>
-        </div>
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      首页
+      <small>管理台</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li class="active"><i class="fa fa-dashboard"></i> 首页</li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+      <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
         <a href="/record/new">
-          <div class="panel-footer">
-            <span class="pull-left">添加值班记录</span>
-            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-            <div class="clearfix"></div>
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>添加记录</h3>
+              <!-- <p>Bounce Rate</p> -->
+            </div>
+            <div class="icon">
+              <i class="ion ion-compose"></i>
+            </div>
+            <div class="small-box-footer">查看更多 <i class="fa fa-arrow-circle-right"></i></div>
           </div>
         </a>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-      <div class="panel panel-green">
-        <div class="panel-heading">
-          <div class="row">
-            <div class="col-xs-3">
-              <i class="fa fa-tasks fa-5x"></i>
-            </div>
-            <div class="col-xs-9 text-right">
-            </div>
-          </div>
-        </div>
+      </div><!-- ./col -->
+      <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
         <a href="/record/show">
-          <div class="panel-footer">
-            <span class="pull-left">查看值班记录</span>
-            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-            <div class="clearfix"></div>
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>值班记录</h3>
+              <p><!-- New Orders --></p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-clipboard"></i>
+            </div>
+            <div class="small-box-footer">查看更多 <i class="fa fa-arrow-circle-right"></i></div>
           </div>
         </a>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-      <div class="panel panel-yellow">
-        <div class="panel-heading">
-          <div class="row">
-            <div class="col-xs-3">
-              <i class="fa fa-bar-chart-o fa-5x"></i>
-            </div>
-            <div class="col-xs-9 text-right">
-            </div>
-          </div>
-        </div>
+      </div><!-- ./col -->
+      <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
         <a href="">
-          <div class="panel-footer">
-            <span class="pull-left">查看图表统计</span>
-            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-            <div class="clearfix"></div>
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>图表统计</h3>
+              <!-- <p>Unique Visitors</p> -->
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <div class="small-box-footer">查看更多 <i class="fa fa-arrow-circle-right"></i></div>
           </div>
         </a>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-      <div class="panel panel-red">
-        <div class="panel-heading">
-          <div class="row">
-            <div class="col-xs-3">
-              <i class="fa fa-support fa-5x"></i>
+      </div><!-- ./col -->
+      <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <a href="">
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>导出记录</h3>
+              <!-- <p>User Registrations</p> -->
             </div>
-            <div class="col-xs-9 text-right">
+            <div class="icon">
+              <i class="ion ion-share"></i>
             </div>
-          </div>
-        </div>
-        <a href="#">
-          <div class="panel-footer">
-            <span class="pull-left">查看值班排期</span>
-            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-            <div class="clearfix"></div>
+            <div class="small-box-footer">查看更多 <i class="fa fa-arrow-circle-right"></i></div>
           </div>
         </a>
-      </div>
-    </div>
-  </div>
+      </div><!-- ./col -->
+    </div><!-- /.row -->
+  <section>
 </div>
 {{/block}}
