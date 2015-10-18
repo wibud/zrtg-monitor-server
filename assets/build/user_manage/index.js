@@ -41,6 +41,7 @@ var UserManager = {
                 pswd = button.data('pswd') || '',
                 role = button.data('role') || '',
                 type = button.data('type'),
+                dept = button.data('dept'),
                 modal = $(this);
 
             self.role = role;
@@ -52,10 +53,13 @@ var UserManager = {
             if(role === 'admin') {
 
                 $('.modal-body #J_InputRoleWrap', modal).hide();
+                $('.modal-body #J_InputDeptWrap', modal).hide();
             } else {
 
                 $('.modal-body #J_InputRoleWrap', modal).show();
+                $('.modal-body #J_InputDeptWrap', modal).show();
                 modal.find('.modal-body #J_InputRole option[value="' + role + '"]').attr('selected', 'selected');
+                modal.find('.modal-body #J_InputDept option[value="' + dept + '"]').attr('selected', 'selected');
             }
 
             if(type == 'add') {
@@ -133,6 +137,7 @@ var UserManager = {
             name = $('#J_Modal #J_InputName').val(),
             pswd = $('#J_Modal #J_InputPswd').val(),
             role = $('#J_Modal #J_InputRole').val(),
+            dept = $('#J_Modal #J_InputDept').val(),
             api = type == 'add' ? '/user/new' : '/user/edit',
             param = {
 
@@ -140,7 +145,10 @@ var UserManager = {
                 newPwd: pswd
             };
 
-        if(this.role != 'admin') param.newRole = role;
+        if(this.role != 'admin') {
+            param.newRole = role;
+            param.newDept = dept;
+        }
 
         if(type == 'edit') param.name = this.editName;
 
@@ -169,14 +177,14 @@ var UserManager = {
                     return;
                 }
 
-                var tr = '<div class="btn-group" role="group"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#J_Modal" data-title="编辑用户" data-name="' + name + '" data-pswd="' + pswd + '" data-role="' + role + '" data-type="edit"><i class="fa fa-edit"></i></button><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#J_DelModal" data-name="'+ name +'"><i class="fa fa-trash"></i></button></div>';
+                var tr = '<div class="btn-group" role="group"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#J_Modal" data-title="编辑用户" data-name="' + name + '" data-pswd="' + pswd + '" data-role="' + role + '" data-dept="' + dept + '" data-type="edit"><i class="fa fa-edit"></i></button><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#J_DelModal" data-name="'+ name +'"><i class="fa fa-trash"></i></button></div>';
 
                 if(type == 'add') {
 
-                    self.table.row.add([name, RoleEnum[role], tr]).draw();
+                    self.table.row.add([name, RoleEnum[role], dept, tr]).draw();
                 } else {
 
-                    self.table.row('.editSelected').data([name, RoleEnum[role], tr]);
+                    self.table.row('.editSelected').data([name, RoleEnum[role], dept, tr]);
                 }
             },
             error: function(error) {
@@ -962,7 +970,10 @@ function _init() {
 
 var Global = {
 
+  alert: function(info) {
 
+    window.alert(info);
+  }
 };
 
 window.Global = Global;

@@ -834,7 +834,10 @@ function _init() {
 
 var Global = {
 
+  alert: function(info) {
 
+    window.alert(info);
+  }
 };
 
 window.Global = Global;

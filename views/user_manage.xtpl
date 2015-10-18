@@ -28,7 +28,7 @@
                     <div class="box-header">
                         <h3 class="box-title">用户列表</h3>
                         <div class="pull-right">
-                            <button type="button" class="btn btn-success btn-adduser" data-toggle="modal" data-target="#J_Modal" data-title="添加用户" data-type="add">添加用户</button>
+                            <button type="button" class="btn btn-default btn-adduser" data-toggle="modal" data-target="#J_Modal" data-title="添加用户" data-type="add">添加用户</button>
                         </div>
                     </div><!-- /.box-header -->
                     <div class="box-body">
@@ -37,6 +37,7 @@
                                 <tr>
                                     <th>用户名</th>
                                     <th>职位</th>
+                                    <th>部门</th>
                                     <th>操作</th>
                                 </tr>
                             </thead>
@@ -56,8 +57,15 @@
                                             {{/if}}
                                         </td>
                                         <td>
+                                            {{#if (role === 'admin')}}
+                                                系统管理员
+                                            {{else}}
+                                                {{dept}}
+                                            {{/if}}
+                                        </td>
+                                        <td>
                                             <div class="btn-group" role="group">
-                                              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#J_Modal" data-title="编辑用户" data-name="{{name}}" data-pswd="{{password}}" data-role="{{role}}" data-type="edit"><i class="fa fa-edit"></i></button>
+                                              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#J_Modal" data-title="编辑用户" data-name="{{name}}" data-pswd="{{password}}" data-role="{{role}}" data-dept="{{dept}}" data-type="edit"><i class="fa fa-edit"></i></button>
                                               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#J_DelModal" data-name="{{name}}"><i class="fa fa-trash"></i></button>
                                             </div>
                                         </td>
@@ -90,6 +98,14 @@
                                             <option value="watcher">值班员</option>
                                             <option value="monitor">值班长</option>
                                             <option value="tec">技术员</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group" id="J_InputDeptWrap">
+                                        <label>部门</label>
+                                        <select id="J_InputDept" class="form-control">
+                                            {{#each (depts)}}
+                                                <option value="{{name}}">{{name}}</option>
+                                            {{/each}}
                                         </select>
                                     </div>
                                 </form>

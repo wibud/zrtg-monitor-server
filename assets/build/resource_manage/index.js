@@ -2,13 +2,11 @@
 // 加载Global
 require('../../c/global/global.js');
 
-
-
 var resource = {
 
   init: function() {
 
-    this.modal = $('#J_AddResourceModal');
+    // this.modal = $('#J_AddResourceModal');
     this.bindEvent();
 
   },
@@ -17,40 +15,40 @@ var resource = {
 
     var self = this;
 
-    this.modal.on('show.bs.modal', function (e) {
+    // this.modal.on('show.bs.modal', function (e) {
 
-      var btn = $(e.relatedTarget);
-      var type = btn.data('type');
+    //   var btn = $(e.relatedTarget);
+    //   var type = btn.data('type');
 
-      var modal = $(this);
-      modal.find('.J_ResourceType').val(type);
-      modal.find('.modal-title').html(btn.html());
+    //   var modal = $(this);
+    //   modal.find('.J_ResourceType').val(type);
+    //   modal.find('.modal-title').html(btn.html());
 
-    });
+    // });
 
-    $('.J_ModalSure').on('click', function() {
+    // $('.J_ModalSure').on('click', function() {
 
-      var $modal = $('#J_AddResourceModal');
+    //   var $modal = $('#J_AddResourceModal');
 
-      var type = $modal.find('.J_ResourceType').val().trim();
-      var name = $modal.find('.J_ResourceName').val().trim();
+    //   var type = $modal.find('.J_ResourceType').val().trim();
+    //   var name = $modal.find('.J_ResourceName').val().trim();
 
-      self.action('new', type, name, function() {
+    //   self.action('new', type, name, function() {
 
-        var $panel = $('.resource-item.' + type);
-        var itemHTML = '<span class="label label-info">'
-                + name
-                + '<span class="remove-btn J_ResourceRemove" data-name="'
-                + name
-                + '">x</span></span>';
+    //     var $panel = $('.resource-item.' + type);
+    //     var itemHTML = '<span class="label label-primary">'
+    //             + name
+    //             + '<i class="fa fa-close remove-btn J_ResourceRemove" data-name="'
+    //             + name
+    //             + '"></i></span>';
 
-        $panel.find('.panel-body .alert-danger').remove();
-        $panel.find('.panel-body').append(itemHTML);
+    //     $panel.find('.box-body .alert-danger').remove();
+    //     $panel.find('.box-body').append(itemHTML);
 
-        self.modal.modal('hide');
-      });
+    //     self.modal.modal('hide');
+    //   });
 
-    });
+    // });
 
     $('.resource-item').on('click', function(e) {
 
@@ -63,6 +61,25 @@ var resource = {
 
         self.action('remove', type, name, function() {
           $target.parent('.label').fadeOut();
+        });
+      }
+
+      if($target.hasClass('J_AddResource')) {
+
+        var type = $target.parents('.resource-item').attr('data-type');
+        var name = $target.parents('.resource-item').find('.J_Input').val().trim();
+
+        self.action('new', type, name, function() {
+
+          var $panel = $('.resource-item.' + type);
+          var itemHTML = '<span class="label label-default">'
+                  + name
+                  + '<i class="fa fa-close remove-btn J_ResourceRemove" data-name="'
+                  + name
+                  + '"></i></span>';
+
+          $panel.find('.box-body .alert-danger').remove();
+          $panel.find('.box-body').append(itemHTML);
         });
       }
 
@@ -881,7 +898,10 @@ function _init() {
 
 var Global = {
 
+  alert: function(info) {
 
+    window.alert(info);
+  }
 };
 
 window.Global = Global;

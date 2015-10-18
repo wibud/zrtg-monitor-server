@@ -5,6 +5,7 @@
 'use strict';
 
 var User = require('../models/user');
+var Resource = require('../models/resource');
 var helper = require('../lib/helper');
 var log = helper.getLogger('user');
 var _ = helper._;
@@ -104,10 +105,13 @@ exports.manage = function* () {
 	try {
 
 		var users = yield User.find({}),
-			admins = _.filter(users, {role: 'admin'}),
-			monitors = _.filter(users, {role: 'monitor'}),
-			watchers = _.filter(users, {role: 'watcher'}),
-			tecs = _.filter(users, {role: 'tec'});
+				admins = _.filter(users, {role: 'admin'}),
+				monitors = _.filter(users, {role: 'monitor'}),
+				watchers = _.filter(users, {role: 'watcher'}),
+				tecs = _.filter(users, {role: 'tec'});
+
+		var deptsData = yield Resource.find({type: 'group'});
+		var depts = _.isArray(deptsData) && deptsData.length > 0 ? deptsData[0].list : [];
 
 		yield this.render('user_manage', {
 			page: 'user_manage',
@@ -115,7 +119,8 @@ exports.manage = function* () {
 			monitors: monitors,
 			watchers: watchers,
 			tecs: tecs,
-			whole: admins.concat(monitors, watchers, tecs)
+			whole: admins.concat(monitors, watchers, tecs),
+			depts: depts
 		});
 
 	} catch(err) {
@@ -136,7 +141,8 @@ exports.new = function* () {
 		yield User.new({
 			name: this.request.body.newName,
 			password: this.request.body.newPwd,
-			role: this.request.body.newRole
+			role: this.request.body.newRole,
+			dept: this.request.body.newDept
 		});
 
 		this.body = {status: 1};
@@ -173,8 +179,8 @@ exports.remove = function* () {
 exports.edit = function* () {
 
 	try {
-
-		yield User.edit(this.query.name, this.query.newName, this.query.newPwd, this.query.newRole);
+console.log(this.query);
+		yield User.edit(this.query);
 
 		this.body = {status: 1};
 

@@ -43,6 +43,7 @@ exports.new = function(user) {
 
 	user.name = _.isString(user.name) ? user.name.trim() : user.name;
 	user.password = _.isString(user.password) ? user.password.trim() : user.password;
+  user.dept = _.isString(user.dept) ? user.dept.trim() : '';
 
 	if (!user || !user.name || user.name === '' || !user.password || user.password === '') {
 		throw new Error('参数不全：name, password, role');
@@ -65,14 +66,20 @@ exports.new = function(user) {
 /**
  * 编辑用户的账户名或密码
  */
-exports.edit = function(name, newName, newPwd, newRole) {
+exports.edit = function(data) {
 
 	var self = this;
 	var newData = {};
+  var name = data.name;
+  var newName = data.newName;
+  var newPwd = data.newPwd;
+  var newRole = data.newRole;
+  var newDept = data.newDept;
 
 	newName = _.isString(newName) ? newName.trim() : newName;
 	newPwd = _.isString(newPwd) ? newPwd.trim() : newPwd;
   newRole = _.isString(newRole) ? newRole.trim() : newRole;
+  newDept = _.isString(newDept) ? newDept.trim() : '';
 
 	var promise = new Promise(function(resolve, reject) {
 		resolve(1);
@@ -81,7 +88,7 @@ exports.edit = function(name, newName, newPwd, newRole) {
 	if ((!newName || newName === '') && (!newPwd || newPwd === '') && (!newRole || newRole === '')) {
 
 		promise.then(function() {
-			throw new Error('参数不全：用户名/密码/职位');
+			throw new Error('参数不全：用户名/密码/身份');
 		});
 
 	}
@@ -97,7 +104,11 @@ exports.edit = function(name, newName, newPwd, newRole) {
 	}
 
   if (newRole && newRole.length > 0) {
-    newData.newRole = newRole;
+    newData.role = newRole;
+  }
+
+  if(newDept && newDept.length > 0) {
+    newData.dept = newDept;
   }
 
 

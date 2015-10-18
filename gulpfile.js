@@ -58,17 +58,7 @@ gulp.task('js', ['clean'],function(){
                     }
                 })
                 .pipe(source('index.js'))
-                .pipe(gulp.dest(BUILD + '/' + pageName))
-                // .pipe(buffer())
-                // .pipe(uglify().on('error', function (err) {
-                //     gutil.log(err);
-                // }))
-                // .pipe(rename({
-                //     suffix: '.min'
-                // }))
-                // .pipe(gulp.dest(BUILD + '/' + pageName))
-                ;
-
+                .pipe(gulp.dest(BUILD + '/' + pageName));
         });
     });
 });
@@ -81,9 +71,6 @@ gulp.task('css', ['clean'], function(){
             }))
             .pipe(autoprefixer())
             .pipe(minifyCSS())
-            // .pipe(rename({
-            //     suffix: '.min'
-            // }))
             .pipe(gulp.dest(BUILD));
 
 });
