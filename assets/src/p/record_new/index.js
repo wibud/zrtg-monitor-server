@@ -1,63 +1,48 @@
 // 加载Global
 require('../../c/global/global.js');
 
+var Resource = {
 
-$(document).ready(function() {
+  init: function() {
 
-  // 表单校验
-  var $validator = $("#commentForm").validate({
-    rules: {
-      J_Datefield: {
-        required: true
-      },
-      J_Timefield: {
-        required: true
-      },
-      J_Dept: {
-        required: true
-      },
-      J_Class: {
-        required: true
-      },
-      J_finder: {
-        required: true
-      },
-      J_Chanel: {
-        required: true
-      },
-      J_Program: {
-        required: true
-      },
-      J_Section: {
-        required: true
-      },
-      J_Playtime: {
-        required: true
-      },
-      J_Event: {
-        required: true
-      },
-      J_Error: {
-        required: true
-      },
-      J_Question: {
-        required: true
-      },
-      J_Desc: {
-        required: true
-      }
-    }
-  });
+    this.initDatepicker();
 
-  // 初始化流程
-  $('#rootwizard').bootstrapWizard({
-    'tabClass': 'nav nav-pills',
-    'onNext': function(tab, navigation, index) {
-      var $valid = $("#commentForm").valid();
-      if(!$valid) {
-        $validator.focusInvalid();
-        return false;
-      }
-    }
-  });
-});
+    this.initTimepicker();
+
+    this.initSeletor();
+  },
+
+  initDatepicker: function() {
+
+    $('#J_Datefield').datepicker({
+      autoclose: true,
+      language: 'zh-CN',
+      endDate: '0d',
+      todayBtn: 'linked',
+      todayHighlight: true
+    });
+  },
+
+  initTimepicker: function() {
+
+    $('#J_Timefield').timepicker({
+
+      showSeconds: true,
+      // showInputs: false,
+      showMeridian: false,
+      minuteStep: 1,
+      secondStep: 1
+    });
+  },
+
+  initSeletor: function() {
+
+    $('#J_Dept').select2();
+    $('#J_Class').select2();
+    $('#J_Finder').select2();
+  }
+};
+
+Resource.init();
+
+module.exports = Resource;

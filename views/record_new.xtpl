@@ -3,7 +3,110 @@
 {{extend ('./layout')}}
 
 {{#block ('body')}}
-<div id="page-wrapper">
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+      <h1>
+        值班管理
+        <small>添加值班记录</small>
+      </h1>
+      <ol class="breadcrumb">
+          <li><a href="/"><i class="fa fa-dashboard"></i> 首页</a></li>
+          <li>值班管理</li>
+          <li class="active">添加值班记录</li>
+      </ol>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    <div class="alert alert-warning alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong>注意!</strong> 提交前请复查，一旦提交不能修改
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="box box-danger">
+          <div class="box-header">
+            <h3 class="box-title">基本信息</h3>
+            <div class="box-tools pull-right">
+              <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            </div>
+          </div>
+          <div class="box-body">
+            <div class="form-group">
+              <label>发现日期:</label>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-calendar"></i>
+                </div>
+                <input type="text" class="form-control pull-right" id="J_Datefield">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>发现时间:</label>
+              <div class="input-group bootstrap-timepicker">
+                <div class="input-group-addon">
+                  <i class="fa fa-clock-o"></i>
+                </div>
+                <input type="text" class="form-control pull-right" id="J_Timefield">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>科组:</label>
+              <select class="form-control pull-right" id="J_Dept">
+                {{#each(groups)}}
+                  <option>{{this.name}}</option>
+                {{/each}}
+              </select>
+            </div>
+            <div class="form-group">
+              <label>发现人:</label>
+              <select class="form-control pull-right" id="J_Finder">
+                <option>早班</option>
+                <option>中班</option>
+                <option>晚班</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>班次:</label>
+              <select class="form-control pull-right" id="J_Class">
+                <option>早班</option>
+                <option>中班</option>
+                <option>晚班</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="box box-success">
+          <div class="box-header">
+            <h3 class="box-title">事件详情</h3>
+            <div class="box-tools pull-right">
+              <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            </div>
+          </div>
+          <div class="box-body">
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="box box-primary">
+          <div class="box-header">
+            <h3 class="box-title">节目属性</h3>
+            <div class="box-tools pull-right">
+              <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            </div>
+          </div>
+          <div class="box-body">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- <div id="page-wrapper">
   <div class="row">
     <div class="col-lg-12">
       <h1 class="page-header">添加记录</h1>
@@ -97,5 +200,5 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 {{/block}}

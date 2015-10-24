@@ -7,6 +7,9 @@
 var record = require('../models/record');
 var helper = require('../lib/helper');
 var log = helper.getLogger('record');
+var Resource = require('../models/resource');
+var _ = helper._;
+var User = require('../models/user');
 
 
 /**
@@ -33,9 +36,30 @@ exports.new = function* () {
 
 	try {
 
-		yield this.render('record_new', {
+		// 获取用户，按科组分组
+    var users = yield User.find({});
+
+		// 获取所有资源
+		var resource = yield Resource.find({});
+    var result = {
+      channels: [],
+      errors: [],
+      programs: [],
+      groups: [],
+      users: {}
+    };
+
+    resource.forEach(function(item) {
+      result[item.type + 's'] = item.list;
+			result.users[item.name] = _.filter(users, {dept: item.name});
+    });
+
+
+
+
+		yield this.render('record_new', _.assign({
 			page: 'record_new'
-		});
+		}, result));
 
 	} catch(err) {
 		yield helper.handleError(this, err);

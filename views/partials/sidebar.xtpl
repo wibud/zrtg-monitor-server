@@ -19,14 +19,14 @@
           <i class="fa fa-dashboard"></i> <span>首页</span> <i class="fa fa-angle-left pull-right"></i>
         </a>
       </li>
-      <li class="treeview{{#if (page==='record_new')}} active{{/if}}">
+      <li class="treeview{{#if (page==='record_show')}} active{{/if}}">
         <a href="#">
           <i class="fa fa-folder"></i>
           <span>值班管理</span>
           <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-          <li class="{{#if (page==='record_new')}}active{{/if}}"><a href="/record/show"><i class="fa fa-book"></i> 值班记录</a></li>
+          <li class="{{#if (page==='record_show')}}active{{/if}}"><a href="/record/show"><i class="fa fa-book"></i> 值班记录</a></li>
           <li><a href="#"><i class="fa fa-calendar"></i> 值班排期</a></li>
         </ul>
       </li>

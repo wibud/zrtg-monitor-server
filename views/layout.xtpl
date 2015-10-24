@@ -21,8 +21,14 @@
     <link href="/assets/lib/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css">
   {{/if}}
 
+  {{#if (page==='record_new')}}
+    <link href="/assets/lib/datepicker/datepicker3.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/assets/lib/timepicker/bootstrap-timepicker.min.css">
+    <link rel="stylesheet" href="/assets/lib/select2/select2.min.css">
+  {{/if}}
+
 	{{#if(page)}}
-	<link rel="stylesheet" href="/assets/build/{{page}}/index.css">
+	 <link rel="stylesheet" href="/assets/build/{{page}}/index.css">
 	{{/if}}
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -56,8 +62,10 @@
 <script src="/assets/lib/slimScroll/jquery.slimscroll.min.js"></script>
 
 {{#if (page==='record_new')}}
-  {{!-- <script src="/assets/lib/wizard/jquery.validate.min.js"></script>
-  <script src="/assets/lib/wizard/jquery.bootstrap.wizard.min.js"></script> --!}}
+  <script src="/assets/lib/datepicker/bootstrap-datepicker.js"></script>
+  <script src="/assets/lib/datepicker/locales/bootstrap-datepicker.zh-CN.js"></script>
+  <script src="/assets/lib/timepicker/bootstrap-timepicker.min.js"></script>
+  <script src="/assets/lib/select2/select2.full.min.js"></script>
 {{/if}}
 
 {{#if (page==='user_manage' || page==='record_show')}}
