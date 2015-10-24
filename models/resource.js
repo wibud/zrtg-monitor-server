@@ -122,3 +122,38 @@ exports.remove = function(type, name) {
     });
 
 }
+
+/**
+ * 全量替换资源
+ * @param  {[type]} type [description]
+ * @param  {[type]} data [description]
+ * @return {[type]}      [description]
+ */
+exports.replace = function(type, data) {
+
+  var legalTypes = ['error', 'channel', 'program', 'group'];
+
+  if (legalTypes.indexOf(type) === -1) {
+    throw new Error('不合法的资源类型，目前可接受的类型有：' + legalTypes.join());
+  }
+
+  log.debug('新增 resource, type: %s, data: %s', type, data);
+
+  return this
+    .find({type: type})
+    .then(function(result) {
+
+      if (result.length === 0) {
+
+        // 类型数据为空
+        return db.insert(dbName, {type: type,list: JSON.parse(data)});
+
+      } else {
+
+        return db
+                .update(dbName, {type: type}, {$set: {
+                  list: JSON.parse(data)
+                }});
+      }
+    })
+}

@@ -1,5 +1,7 @@
 // 加载Global
 require('../../c/global/global.js');
+// 加载easytree
+require('../../c/easytree/index.js');
 
 var resource = {
 
@@ -8,6 +10,11 @@ var resource = {
     // this.modal = $('#J_AddResourceModal');
     this.bindEvent();
 
+    $('.J_Error').EasyTree({
+        addable: true,
+        editable: true,
+        deletable: true
+    });
   },
 
   bindEvent: function() {
@@ -84,6 +91,51 @@ var resource = {
 
     });
 
+    $('.J_ModifyErrors').on('click', function(e) {
+
+      // 拼凑数据格式
+      var data = [];
+      parse('.J_Error', data);
+
+      function parse(node, data){
+
+        $(node).find('> ul > li').each(function(index, item) {
+
+          var obj = {};
+          obj.name = $(item).find('> span > a').text().trim();
+          obj.children = [];
+
+          parse(item, obj.children);
+
+          data.push(obj);
+        });
+      }
+
+       // 提交
+      $.ajax({
+        type: 'POST',
+        url: '/resource/replace',
+        data: {
+          type: 'error',
+          data: JSON.stringify(data)
+        },
+        dataType: 'json',
+        success: function(res) {
+
+          if (res.status !== 1) {
+
+            Global.alert(res.message);
+          } else {
+
+            Global.alert('配置成功！');
+          }
+        },
+        error: function(err) {
+
+          Global.alert(err.message);
+        }
+       });
+    });
   },
 
 

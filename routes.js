@@ -32,6 +32,7 @@ module.exports = function(router) {
   router.get('/resource/get', resource.get);
   router.get('/resource/new', resource.new);
   router.get('/resource/remove', resource.remove);
+  router.post('/resource/replace', resource.replace);
 
   // 404
   router.get('*', common.notFound);

@@ -100,5 +100,21 @@ exports.remove = function* () {
 
 };
 
+/**
+ * 直接全量替换资源
+ */
+exports.replace = function* () {
 
+  try {
+
+    yield Resource.replace(this.request.body.type, this.request.body.data);
+
+    this.body = {
+      status: 1
+    };
+
+  } catch(err) {
+    yield helper.handleError(this, err, 'json');
+  };
+}
 
