@@ -54,24 +54,21 @@
               <label>科组:</label>
               <select class="form-control pull-right" id="J_Dept">
                 {{#each(groups)}}
-                  <option>{{this.name}}</option>
+                  <option value="{{this.name}}">{{this.name}}</option>
                 {{/each}}
               </select>
             </div>
             <div class="form-group">
               <label>发现人:</label>
               <select class="form-control pull-right" id="J_Finder">
-                <option>早班</option>
-                <option>中班</option>
-                <option>晚班</option>
               </select>
             </div>
             <div class="form-group">
               <label>班次:</label>
               <select class="form-control pull-right" id="J_Class">
-                <option>早班</option>
-                <option>中班</option>
-                <option>晚班</option>
+                <option value="早班">早班</option>
+                <option value="中班">中班</option>
+                <option value="晚班">晚班</option>
               </select>
             </div>
           </div>
@@ -104,7 +101,11 @@
     </div>
   </section>
 </div>
-
+<script>
+  var GlobalData = {
+    users: {{{stringify(users)}}}
+  };
+</script>
 
 <!-- <div id="page-wrapper">
   <div class="row">

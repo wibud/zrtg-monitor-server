@@ -51,14 +51,16 @@ exports.new = function* () {
 
     resource.forEach(function(item) {
       result[item.type + 's'] = item.list;
-			result.users[item.name] = _.filter(users, {dept: item.name});
     });
 
+    result.groups.forEach(function(item) {
 
-
+    	result.users[item.name] = _.filter(users, {dept: item.name});
+    });
 
 		yield this.render('record_new', _.assign({
-			page: 'record_new'
+			page: 'record_new',
+			stringify: JSON.stringify
 		}, result));
 
 	} catch(err) {

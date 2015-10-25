@@ -10,6 +10,8 @@ var Resource = {
     this.initTimepicker();
 
     this.initSeletor();
+
+    this.bindEvent();
   },
 
   initDatepicker: function() {
@@ -40,7 +42,9 @@ var Resource = {
     $('#J_Dept').select2();
     $('#J_Class').select2();
     $('#J_Finder').select2();
-  }
+  },
+
+  bindEvent: function() {}
 };
 
 Resource.init();
