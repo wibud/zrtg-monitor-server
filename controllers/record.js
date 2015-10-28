@@ -29,6 +29,28 @@ exports.show = function* () {
 
 };
 
+exports.list = function* () {
+
+  try {
+
+    var param = JSON.parse(this.query.param);
+    var cPage = this.query.cPage;
+    var pageSize = this.query.pageSize;
+
+    var result = yield record.list(param, cPage, pageSize);
+
+    this.body = {
+      status: 1,
+      totalPage: result.totalPage,
+      totalCount: result.totalCount,
+      cPage: cPage,
+      list: result.list
+    };
+  } catch(err) {
+    yield helper.handleError(this, err, 'json');
+  };
+};
+
 /**
  * 新增记录
  */
@@ -46,7 +68,8 @@ exports.new = function* () {
       errors: [],
       programs: [],
       groups: [],
-      users: {}
+      users: {},
+      usersByRole: {}
     };
 
     resource.forEach(function(item) {
@@ -58,6 +81,14 @@ exports.new = function* () {
     	result.users[item.name] = _.filter(users, {dept: item.name});
     });
 
+    result.usersByRole = {
+
+    	admins: _.filter(users, {role: 'admin'}),
+			monitors: _.filter(users, {role: 'monitor'}),
+			watchers: _.filter(users, {role: 'watcher'}),
+			tecs: _.filter(users, {role: 'tec'})
+    };
+
 		yield this.render('record_new', _.assign({
 			page: 'record_new',
 			stringify: JSON.stringify
@@ -66,6 +97,21 @@ exports.new = function* () {
 	} catch(err) {
 		yield helper.handleError(this, err);
 	};
-
-
 };
+
+/**
+ * 创建记录
+ */
+exports.create = function* () {
+
+	try {
+
+    yield record.create(this.request.body.data);
+
+    this.body = {
+      status: 1
+    };
+	} catch(err) {
+		yield helper.handleError(this, err, 'json');
+	};
+}

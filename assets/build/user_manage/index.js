@@ -24,6 +24,21 @@ var UserManager = {
     initTables: function() {
 
         this.table = $('#J_Table').DataTable({
+            language: {
+                search:         "搜索：",
+                lengthMenu:    "每页显示 _MENU_ 记录",
+                info:           "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+                infoEmpty:      "暂无数据",
+                infoFiltered:   "(从 _MAX_ 条记录过滤)",
+                zeroRecords:    "暂无数据",
+                emptyTable:     "暂无数据",
+                paginate: {
+                        first:      "首页",
+                        previous:   "上一页",
+                        next:       "下一页",
+                        last:       "尾页"
+                }
+            },
             responsive: true,
             pageLength: 50
         });

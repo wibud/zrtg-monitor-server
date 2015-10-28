@@ -24,11 +24,11 @@
                     <div class="box-header">
                         <h3 class="box-title">记录列表</h3>
                         <div class="pull-right">
-                            <button type="button" class="btn btn-default btn-adduser" data-type="add">导出记录</button>
+                            <button type="button" class="btn btn-default btn-adduser" data-type="add">导出当前记录</button>
                         </div>
                     </div><!-- /.box-header -->
-                    <div class="box-body">
-                        <table id="J_Table" class="table table-bordered table-striped">
+                    <div class="box-body table-responsive no-padding">
+                        <table id="J_Table" class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>科组</th>
@@ -44,14 +44,14 @@
                                     <th>描述补充</th>
                                     <th>错误入点</th>
                                     <th>持续时长</th>
-                                    <th>技术科反馈</th>
+                                    <!-- <th>技术科反馈</th>
                                     <th>技术值班</th>
                                     <th>上报</th>
-                                    <th>重播</th>
+                                    <th>重播</th> -->
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr class="odd">
+                            <tbody id="J_TableBody">
+                                <!-- <tr class="odd">
                                     <td>播控一科</td>
                                     <td>陆科挺</td>
                                     <td>2015-01-03</td>
@@ -69,123 +69,13 @@
                                     <td>程结</td>
                                     <td>否</td>
                                     <td>是</td>
-                                </tr>
-                                <tr class="odd">
-                                    <td>播控一科</td>
-                                    <td>邵宇</td>
-                                    <td>2015-01-01</td>
-                                    <td>00:00:00</td>
-                                    <td>卫视</td>
-                                    <td>电视剧</td>
-                                    <td></td>
-                                    <td>隐患</td>
-                                    <td>字幕游走</td>
-                                    <td>片名错误</td>
-                                    <td></td>
-                                    <td>00:30:32</td>
-                                    <td>5-10秒</td>
-                                    <td>已解决</td>
-                                    <td>潘黎明</td>
-                                    <td>是</td>
-                                    <td>否</td>
-                                </tr>
-                                <tr class="odd">
-                                    <td>播控一科</td>
-                                    <td>朱毅</td>
-                                    <td>2015-02-01</td>
-                                    <td>14:02:00</td>
-                                    <td>国际</td>
-                                    <td>串播</td>
-                                    <td></td>
-                                    <td>隐患</td>
-                                    <td>提前播</td>
-                                    <td>画质问题</td>
-                                    <td></td>
-                                    <td>00:03:32</td>
-                                    <td>5-10秒</td>
-                                    <td>该记录为正常</td>
-                                    <td>杨跃华</td>
-                                    <td>是</td>
-                                    <td>否</td>
-                                </tr>
-                                <tr class="odd">
-                                    <td>播控一科</td>
-                                    <td>潘桂珍</td>
-                                    <td>2015-03-023</td>
-                                    <td>20:00:00</td>
-                                    <td>留学</td>
-                                    <td>自办栏目</td>
-                                    <td></td>
-                                    <td>瑕疵</td>
-                                    <td>上载瑕疵</td>
-                                    <td>马赛克</td>
-                                    <td></td>
-                                    <td>00:23:00</td>
-                                    <td>5-10秒</td>
-                                    <td>已核实</td>
-                                    <td>李一君</td>
-                                    <td>是</td>
-                                    <td>否</td>
-                                </tr>
-                                <tr class="odd">
-                                    <td>播控一科</td>
-                                    <td>胡媛媛</td>
-                                    <td>2015-03-28</td>
-                                    <td>02:00:00</td>
-                                    <td>教育</td>
-                                    <td>新闻</td>
-                                    <td></td>
-                                    <td>瑕疵</td>
-                                    <td>直播瑕疵</td>
-                                    <td>口误</td>
-                                    <td></td>
-                                    <td>00:12:32</td>
-                                    <td>0-1秒</td>
-                                    <td>已核实</td>
-                                    <td>张安航</td>
-                                    <td>是</td>
-                                    <td>否</td>
-                                </tr>
-                                <tr class="odd">
-                                    <td>播控一科</td>
-                                    <td>金国华</td>
-                                    <td>2015-04-01</td>
-                                    <td>12:56:00</td>
-                                    <td>公共</td>
-                                    <td>广告</td>
-                                    <td></td>
-                                    <td>瑕疵</td>
-                                    <td>硬盘播瑕疵</td>
-                                    <td>画面卡顿</td>
-                                    <td></td>
-                                    <td>00:30:32</td>
-                                    <td>2-4秒</td>
-                                    <td>已解决</td>
-                                    <td>丁胜</td>
-                                    <td>是</td>
-                                    <td>否</td>
-                                </tr>
-                                <tr class="odd">
-                                    <td>播控一科</td>
-                                    <td>陈霄洁</td>
-                                    <td>2015-04-13</td>
-                                    <td>18:00:00</td>
-                                    <td>数码</td>
-                                    <td>串播</td>
-                                    <td></td>
-                                    <td>隐患</td>
-                                    <td>硬盘播</td>
-                                    <td>画质问题</td>
-                                    <td></td>
-                                    <td>00:30:32</td>
-                                    <td>5-10秒</td>
-                                    <td>已核实</td>
-                                    <td>李一君</td>
-                                    <td>是</td>
-                                    <td>否</td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
+                    </div>
+                    <div class="box-footer clearfix">
+                        <div class="totalpage pull-left J_TotalPage"></div>
+                        <div id="pagination" class="pull-right"></div>
                     </div>
                 </div>
             </div>

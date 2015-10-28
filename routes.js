@@ -26,6 +26,8 @@ module.exports = function(router) {
 
   router.get('/record/show', record.show);
   router.get('/record/new', record.new);
+  router.post('/record/create', record.create);
+  router.get('/record/list', record.list);
 
   // 资源相关：如增加错误类型，频道等
   router.get('/resource/manage', resource.manage);
