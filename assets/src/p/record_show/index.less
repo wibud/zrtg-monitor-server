@@ -8,7 +8,59 @@
   margin-top: 30px;
 }
 
-.desc-tip {
+.desc-tip, .feedback {
 
   cursor: pointer;
+
+  & + .tooltip {
+
+    opacity: 1;
+
+    p {
+
+      white-space: nowrap;
+      // line-height: 14px;
+    }
+  }
+
+  & + .tooltip > .tooltip-inner {
+
+    background: #fff;
+    border: 2px solid #337ab7;
+    color: #000;
+  }
+
+  & + .tooltip > .tooltip-arrow {
+
+    border-top-color: #337ab7;
+  }
+}
+
+.datepicker {
+
+  z-index: 2000 !important;
+}
+
+.bootstrap-timepicker-widget table td input {
+
+    width: 40px !important;
+    padding: 0;
+}
+
+.search-wrap {
+
+  overflow: hidden;
+}
+
+.select2 {
+
+  width: 100% !important;
+}
+
+.search-date {
+
+  input {
+
+    font-size: 13px;
+  }
 }

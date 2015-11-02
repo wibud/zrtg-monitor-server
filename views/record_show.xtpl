@@ -18,21 +18,141 @@
     </section>
     <!-- Main content -->
     <section class="content">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">搜索</h3>
+                <div class="box-tools pull-right">
+                  <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="col-md-4">
+                    <div class="form-group search-date">
+                      <label>发现日期和时间:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-clock-o"></i>
+                            </div>
+                            <input type="text" class="form-control pull-right" id="J_Datefield">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                      <label>科组:</label>
+                      <select class="form-control pull-right" id="J_Dept">
+                        <option value="无">无</option>
+                        {{#each(groups)}}
+                          <option value="{{this.name}}">{{this.name}}</option>
+                        {{/each}}
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>发现人:</label>
+                      <select class="form-control pull-right" id="J_Finder">
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>技术反馈:</label>
+                      <select class="form-control pull-right" id="J_Feedback">
+                        <option value="无">无</option>
+                        <option value="已核实">已核实</option>
+                        <option value="已了解">已了解</option>
+                        <option value="已解决">已解决</option>
+                        <option value="解决中">解决中</option>
+                        <option value="该记录为正常">该记录为正常</option>
+                      </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                      <label>频道:</label>
+                      <select class="form-control pull-right" id="J_Channel">
+                        <option value="无">无</option>
+                        {{#each(channels)}}
+                          <option value="{{this.name}}">{{this.name}}</option>
+                        {{/each}}
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>节目类型:</label>
+                      <select class="form-control pull-right" id="J_Program">
+                        <option value="无">无</option>
+                        {{#each(programs)}}
+                          <option value="{{this.name}}">{{this.name}}</option>
+                        {{/each}}
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>栏目名称:</label>
+                      <div class="input-group">
+                        <div class="input-group-addon">
+                          <i class="fa fa-video-camera"></i>
+                        </div>
+                        <input type="text" class="form-control pull-right" id="J_Section">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>上报:</label>
+                      <select class="form-control pull-right" id="J_Report">
+                        <option value="无">无</option>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                      </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>事件性质:</label>
+                        <select class="form-control pull-right" id="J_Event">
+                          {{#each(errors)}}
+                            <option value="{{this.name}}">{{this.name}}</option>
+                          {{/each}}
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label>错误类别:</label>
+                        <select class="form-control pull-right" id="J_Error">
+
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label>具体问题:</label>
+                        <select class="form-control pull-right" id="J_Question">
+
+                        </select>
+                      </div>
+                      <div class="form-group">
+                          <label>重播:</label>
+                          <select class="form-control pull-right" id="J_Replay">
+                            <option value="无">无</option>
+                            <option value="是">是</option>
+                            <option value="否">否</option>
+                          </select>
+                        </div>
+                </div>
+            </div>
+            <div class="box-footer clearfix">
+                <div class="pull-right">
+                    <button class="btn btn-default" id="J_Reset">重置</button>
+                    <button class="btn btn-primary" id="J_Search">搜索</button>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-xs-12">
-                 <div class="box">
+                <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">记录列表</h3>
                         <div class="pull-right">
-                            <button type="button" class="btn btn-default btn-adduser" data-type="add">导出当前记录</button>
+                            <button type="button" class="btn btn-success">导出当前记录</button>
                         </div>
-                    </div><!-- /.box-header -->
+                    </div>
                     <div class="box-body table-responsive no-padding">
                         <table id="J_Table" class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>科组</th>
                                     <th>发现人</th>
+                                    <th>班次</th>
                                     <th>发现日期</th>
                                     <th>发现时间</th>
                                     <th>频道</th>
@@ -44,32 +164,11 @@
                                     <th>描述补充</th>
                                     <th>错误入点</th>
                                     <th>持续时长</th>
-                                    <!-- <th>技术科反馈</th>
-                                    <th>技术值班</th>
-                                    <th>上报</th>
-                                    <th>重播</th> -->
+                                    <th>反馈</th>
                                 </tr>
                             </thead>
                             <tbody id="J_TableBody">
-                                <!-- <tr class="odd">
-                                    <td>播控一科</td>
-                                    <td>陆科挺</td>
-                                    <td>2015-01-03</td>
-                                    <td>00:50:00</td>
-                                    <td>钱江</td>
-                                    <td>广告</td>
-                                    <td></td>
-                                    <td>瑕疵</td>
-                                    <td>直播瑕疵</td>
-                                    <td>画面卡顿</td>
-                                    <td></td>
-                                    <td>01:02:02</td>
-                                    <td>11-29秒</td>
-                                    <td>已了解</td>
-                                    <td>程结</td>
-                                    <td>否</td>
-                                    <td>是</td>
-                                </tr> -->
+
                             </tbody>
                         </table>
                     </div>
@@ -82,5 +181,10 @@
         </div>
     </section>
 </div>
-
+<script>
+  var GlobalData = {
+    users: {{{stringify(users)}}},
+    errors: {{{stringify(errors)}}}
+  };
+</script>
 {{/block}}

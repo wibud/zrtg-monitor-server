@@ -19,9 +19,60 @@ exports.show = function* () {
 
 	try {
 
-		yield this.render('record_show', {
-			page: 'record_show'
-		});
+    // 获取用户，按科组分组
+    var users = yield User.find({});
+
+    // 获取所有资源
+    var resource = yield Resource.find({});
+    var result = {
+      channels: [],
+      errors: [],
+      programs: [],
+      groups: [],
+      users: {
+        '无': users
+      },
+      usersByRole: {}
+    };
+
+    resource.forEach(function(item) {
+      result[item.type + 's'] = item.list;
+    });
+
+    result.errors.forEach(function(item) {
+
+      item.children.forEach(function(_item) {
+
+        _item.children.unshift({name: '无'});
+      });
+
+      item.children.unshift({name: '无', children: [{name: '无'}]});
+    });
+
+    result.errors.unshift({name: '无', children: [{name: '无', children: [{name: '无'}]}]});
+
+    result.groups.forEach(function(item) {
+
+      result.users[item.name] = _.filter(users, {dept: item.name});
+    });
+
+    _.each(result.users, function(item, index) {
+
+      item.unshift({name: '无'});
+    });
+
+    result.usersByRole = {
+
+      admins: _.filter(users, {role: 'admin'}),
+      monitors: _.filter(users, {role: 'monitor'}),
+      watchers: _.filter(users, {role: 'watcher'}),
+      tecs: _.filter(users, {role: 'tec'})
+    };
+
+    yield this.render('record_show', _.assign({
+      page: 'record_show',
+      stringify: JSON.stringify
+    }, result));
 
 	} catch(err) {
 		yield helper.handleError(this, err);

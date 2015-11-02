@@ -27,6 +27,11 @@
     <link rel="stylesheet" href="/assets/lib/select2/select2.min.css">
   {{/if}}
 
+  {{#if (page==='record_show')}}
+    <link rel="stylesheet" href="/assets/lib/select2/select2.min.css">
+    <link rel="stylesheet" href="/assets/lib/daterangepicker/daterangepicker-bs3.css">
+  {{/if}}
+
 	{{#if(page)}}
 	 <link rel="stylesheet" href="/assets/build/{{page}}/index.css">
 	{{/if}}
@@ -70,6 +75,9 @@
 
 {{#if (page==='record_show')}}
   <script src="/assets/lib/paginator/bootstrap-paginator.js"></script>
+  <script src="/assets/lib/select2/select2.full.min.js"></script>
+  <script src="/assets/lib/daterangepicker/moment.min.js"></script>
+  <script src="/assets/lib/daterangepicker/daterangepicker.js"></script>
 {{/if}}
 
 {{#if (page==='user_manage')}}
