@@ -143,7 +143,7 @@
                     <div class="box-header">
                         <h3 class="box-title">记录列表</h3>
                         <div class="pull-right">
-                            <button type="button" class="btn btn-success">导出当前记录</button>
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#J_Modal">导出当前记录</button>
                         </div>
                     </div>
                     <div class="box-body table-responsive no-padding">
@@ -180,6 +180,36 @@
             </div>
         </div>
     </section>
+</div>
+<div class="modal fade" id="J_Modal" tabindex="-1" role="dialog" aria-labelledby="delModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="delModalLabel">选择文件编码</h4>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="0" checked>
+                    GBK编码，Excel/SPSS软件默认使用这种编码
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="1">
+                    UTF8编码，Numbers/文本编辑器默认使用这种编码
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="J_Export">确定</button>
+            </div>
+        </div>
+    </div>
 </div>
 <script>
   var GlobalData = {

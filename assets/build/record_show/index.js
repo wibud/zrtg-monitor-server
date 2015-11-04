@@ -51,6 +51,27 @@ var Record = {
     $('#J_Reset').click($.proxy(this.reset, this));
 
     $('#J_Search').click($.proxy(this.search, this));
+
+    $('#J_Export').click($.proxy(this.export, this));
+  },
+
+  export: function() {
+
+    var type = $('#optionsRadios1').is(':checked') ? 0 : 1;
+
+    $.ajax({
+      url: '/record/export',
+      data: {
+        param: JSON.stringify(this.param)
+      },
+      dataType: 'json',
+      success: function(res) {
+
+      },
+      error: function(err) {
+        Global.alert(err.message);
+      }
+    });
   },
 
   reset: function() {
