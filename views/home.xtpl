@@ -17,6 +17,7 @@
   <section class="content">
     <!-- Small boxes (Stat box) -->
     <div class="row">
+      {{#if (user.role === 'admin'||user.role === 'monitor')}}
       <div class="col-lg-3 col-xs-6">
         <!-- small box -->
         <a href="/record/new">
@@ -32,6 +33,7 @@
           </div>
         </a>
       </div><!-- ./col -->
+      {{/if}}
       <div class="col-lg-3 col-xs-6">
         <!-- small box -->
         <a href="/record/show">
@@ -49,7 +51,7 @@
       </div><!-- ./col -->
       <div class="col-lg-3 col-xs-6">
         <!-- small box -->
-        <a href="">
+        <a href="/chart/show">
           <div class="small-box bg-red">
             <div class="inner">
               <h3>图表统计</h3>
@@ -64,7 +66,7 @@
       </div><!-- ./col -->
       <div class="col-lg-3 col-xs-6">
         <!-- small box -->
-        <a href="">
+        <a href="/record/show">
           <div class="small-box bg-yellow">
             <div class="inner">
               <h3>导出记录</h3>
@@ -78,6 +80,63 @@
         </a>
       </div><!-- ./col -->
     </div><!-- /.row -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">记录列表</h3>
+                    <div class="box-tools pull-right">
+                      <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    </div>
+                </div>
+                <div class="box-body table-responsive no-padding">
+                    <table id="J_Table" class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>科组</th>
+                                <th>发现人</th>
+                                <th>班次</th>
+                                <th>发现日期</th>
+                                <th>发现时间</th>
+                                <th>频道</th>
+                                <th>节目类型</th>
+                                <th>栏目名称</th>
+                                <th>事件性质</th>
+                                <th>错误类别</th>
+                                <th>具体问题</th>
+                                <th>描述补充</th>
+                                <th>错误入点</th>
+                                <th>持续时长</th>
+                                <th>反馈</th>
+                            </tr>
+                        </thead>
+                        <tbody id="J_TableBody">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="box-footer clearfix">
+                    <div class="totalpage pull-left J_TotalPage"></div>
+                    <div id="pagination" class="pull-right"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box box-primary">
+          <div class="box-header">
+            <h3 class="box-title">近30天的总错误折线图</h3>
+            <div class="box-tools pull-right">
+              <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            </div>
+          </div>
+          <div class="box-body chart-responsive">
+            <div class="chart" id="J_Line" style="height: 300px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
   <section>
 </div>
 {{/block}}

@@ -59,19 +59,7 @@ var Record = {
 
     var type = $('#optionsRadios1').is(':checked') ? 0 : 1;
 
-    $.ajax({
-      url: '/record/export',
-      data: {
-        param: JSON.stringify(this.param)
-      },
-      dataType: 'json',
-      success: function(res) {
-
-      },
-      error: function(err) {
-        Global.alert(err.message);
-      }
-    });
+    $('#J_Export').attr('href', '/record/export?param=' + JSON.stringify(this.param) + '&type=' +type);
   },
 
   reset: function() {
@@ -279,7 +267,7 @@ var Record = {
                       '<td>' + item.event + '</td>' +
                       '<td>' + item.error + '</td>' +
                       '<td>' + item.question + '</td>' +
-                      '<td><span class="desc-tip" data-toggle="tooltip" title="' + item.desc + '">' + (item.desc.length > 8 ? item.desc.slice(0, 8) + '...' : item.desc) + '</span></td>' +
+                      '<td><span class="desc-tip" data-toggle="tooltip" title="' + item.desc + '">' + (item.desc.length > 5 ? item.desc.slice(0, 5) + '...' : item.desc) + '</span></td>' +
                       '<td>' + item.playtime + '</td>' +
                       '<td>' + item.duration + '</td>' +
                       (
@@ -1104,6 +1092,31 @@ var Global = {
   alert: function(info) {
 
     window.alert(info);
+  },
+
+  /*
+   * 获取url中的参数
+   * @param
+   *      name:{String}   参数名称
+   *      [url]:{String}  url，选填
+   */
+  getUrlParam: function(name, url){
+
+      var href = url || window.location.href,
+          hrefName = encodeURIComponent(name)+"=",
+          hrefStart = href.indexOf(hrefName),
+          hrefValue = null;
+
+      if(hrefStart > -1){
+
+          var hrefEnd = href.indexOf("&",hrefStart);
+            if(hrefEnd == -1){
+                hrefEnd = href.length;
+            }
+            hrefValue = decodeURIComponent(href.substring(hrefStart + hrefName.length, hrefEnd));
+      }
+
+      return hrefValue;
   }
 };
 

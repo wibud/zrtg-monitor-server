@@ -771,6 +771,31 @@ var Global = {
   alert: function(info) {
 
     window.alert(info);
+  },
+
+  /*
+   * 获取url中的参数
+   * @param
+   *      name:{String}   参数名称
+   *      [url]:{String}  url，选填
+   */
+  getUrlParam: function(name, url){
+
+      var href = url || window.location.href,
+          hrefName = encodeURIComponent(name)+"=",
+          hrefStart = href.indexOf(hrefName),
+          hrefValue = null;
+
+      if(hrefStart > -1){
+
+          var hrefEnd = href.indexOf("&",hrefStart);
+            if(hrefEnd == -1){
+                hrefEnd = href.length;
+            }
+            hrefValue = decodeURIComponent(href.substring(hrefStart + hrefName.length, hrefEnd));
+      }
+
+      return hrefValue;
   }
 };
 

@@ -179,7 +179,7 @@ exports.remove = function* () {
 exports.edit = function* () {
 
 	try {
-console.log(this.query);
+
 		yield User.edit(this.query);
 
 		this.body = {status: 1};

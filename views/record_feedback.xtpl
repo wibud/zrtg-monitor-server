@@ -1,0 +1,110 @@
+{{extend ('./layout')}}
+
+{{#block ('body')}}
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+      <h1>
+        值班管理
+        <small>值班反馈</small>
+      </h1>
+      <ol class="breadcrumb">
+          <li><a href="/"><i class="fa fa-dashboard"></i> 首页</a></li>
+          <li>值班管理</li>
+          <li class="active">值班反馈</li>
+      </ol>
+  </section>
+  <!-- Main content -->
+  <section class="content J_Content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">需审批记录</h3>
+                </div>
+                <div class="box-body table-responsive no-padding">
+                    <table id="J_Table" class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>科组</th>
+                                <th>发现人</th>
+                                <th>班次</th>
+                                <th>发现日期</th>
+                                <th>发现时间</th>
+                                <th>频道</th>
+                                <th>节目类型</th>
+                                <th>栏目名称</th>
+                                <th>事件性质</th>
+                                <th>错误类别</th>
+                                <th>具体问题</th>
+                                <th>描述补充</th>
+                                <th>错误入点</th>
+                                <th>持续时长</th>
+                                <th>反馈</th>
+                            </tr>
+                        </thead>
+                        <tbody id="J_TableBody">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="box-footer clearfix">
+                    <div class="totalpage pull-left J_TotalPage"></div>
+                    <div id="pagination" class="pull-right"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>>
+</div>
+<div class="modal fade" id="J_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">反馈</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label>技术反馈:</label>
+                        <select class="form-control pull-right" id="J_Feedback">
+                          <option value="已核实">已核实</option>
+                          <option value="已了解">已了解</option>
+                          <option value="已解决">已解决</option>
+                          <option value="解决中">解决中</option>
+                          <option value="该记录为正常">该记录为正常</option>
+                        </select>
+                      </div>
+                    <div class="form-group">
+                        <label>技术值班:</label>
+                        <select class="form-control pull-right" id="J_Watcher">
+                          {{#each(tec)}}
+                            <option value="{{name}}">{{name}}</option>
+                          {{/each}}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                      <label>上报:</label>
+                      <select class="form-control pull-right" id="J_Report">
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>重播:</label>
+                      <select class="form-control pull-right" id="J_Replay">
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                      </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary J_Save">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{/block}}

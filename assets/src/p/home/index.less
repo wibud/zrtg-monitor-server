@@ -13,3 +13,36 @@
         margin: 20px 0 10px;
     }
 }
+
+.totalpage {
+
+  margin-top: 30px;
+}
+
+.desc-tip, .feedback {
+
+  cursor: pointer;
+
+  & + .tooltip {
+
+    opacity: 1;
+
+    p {
+
+      white-space: nowrap;
+      // line-height: 14px;
+    }
+  }
+
+  & + .tooltip > .tooltip-inner {
+
+    background: #fff;
+    border: 2px solid #337ab7;
+    color: #000;
+  }
+
+  & + .tooltip > .tooltip-arrow {
+
+    border-top-color: #337ab7;
+  }
+}

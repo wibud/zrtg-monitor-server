@@ -1,0 +1,86 @@
+<!-- 新增记录 -->
+
+{{extend ('./layout')}}
+
+{{#block ('body')}}
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+      <h1>
+        报表统计
+        <small></small>
+      </h1>
+      <ol class="breadcrumb">
+          <li><a href="/"><i class="fa fa-dashboard"></i> 首页</a></li>
+          <li class="active">报表统计</li>
+      </ol>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    <div class="box">
+      <div class="box-header">
+          <h3 class="box-title">搜索</h3>
+          <div class="box-tools pull-right">
+            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+          </div>
+      </div>
+      <div class="box-body">
+        <div class="col-md-6">
+          <div class="form-group search-date">
+            <label>日期:</label>
+              <div class="input-group">
+                  <div class="input-group-addon">
+                      <i class="fa fa-clock-o"></i>
+                  </div>
+                  <input type="text" class="form-control pull-right" id="J_Datefield">
+              </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>频道:</label>
+            <select class="form-control pull-right" id="J_Channel">
+              <option value="全部">全部</option>
+              {{#each(channels)}}
+                <option value="{{this.name}}">{{this.name}}</option>
+              {{/each}}
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="box-footer clearfix">
+          <div class="pull-right">
+              <button class="btn btn-primary" id="J_Search">搜索</button>
+          </div>
+      </div>
+    </div>
+    <div class="box box-primary">
+      <div class="box-header">
+        <h3 class="box-title">错误折线图</h3>
+        <div class="box-tools pull-right">
+          <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+        </div>
+      </div>
+      <div class="box-body chart-responsive">
+        <div class="chart" id="J_Line" style="height: 300px;"></div>
+      </div>
+    </div>
+   <!--  <div class="row">
+      <div class="col-md-6"> -->
+        <div class="box box-primary">
+          <div class="box-header">
+            <h3 class="box-title">隐患瑕疵比</h3>
+            <div class="box-tools pull-right">
+              <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            </div>
+          </div>
+          <div class="box-body chart-responsive">
+            <div class="chart" id="J_TotleRatio" style="height: 300px;"></div>
+          </div>
+        </div>
+      <!-- </div>
+    </div> -->
+  </section>
+</div>
+
+{{/block}}

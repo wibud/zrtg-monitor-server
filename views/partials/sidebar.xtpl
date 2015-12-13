@@ -19,19 +19,25 @@
           <i class="fa fa-dashboard"></i> <span>首页</span> <i class="fa fa-angle-left pull-right"></i>
         </a>
       </li>
-      <li class="treeview{{#if (page==='record_show')}} active{{/if}}">
+      <li class="treeview{{#if (page==='record_show'||page==='record_new'||page==='record_feedback')}} active{{/if}}">
         <a href="#">
           <i class="fa fa-folder"></i>
           <span>值班管理</span>
           <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-          <li class="{{#if (page==='record_show')}}active{{/if}}"><a href="/record/show"><i class="fa fa-book"></i> 值班记录</a></li>
-          <li><a href="#"><i class="fa fa-calendar"></i> 值班排期</a></li>
+          {{#if (user.role === 'admin'||user.role === 'monitor')}}
+          <li class="{{#if (page==='record_new')}}active{{/if}}"><a href="/record/new"><i class="fa fa-book"></i> 添加记录</a></li>
+          {{/if}}
+          <li class="{{#if (page==='record_show')}}active{{/if}}"><a href="/record/show"><i class="fa fa-list"></i> 值班记录</a></li>
+          {{#if (user.role === 'admin'||user.role === 'tec')}}
+          <li class="{{#if (page==='record_feedback')}}active{{/if}}"><a href="/record/showFeedback"><i class="fa fa-edit"></i> 记录反馈</a></li>
+          {{/if}}
+          <!-- <li><a href="#"><i class="fa fa-calendar"></i> 值班排期</a></li> -->
         </ul>
       </li>
-      <li>
-        <a href="#">
+      <li class="{{#if (page==='chart_show')}}active{{/if}}">
+        <a href="/chart/show">
           <i class="fa fa-pie-chart"></i> <span>报表统计</span> <i class="fa fa-angle-left pull-right"></i>
         </a>
       </li>
