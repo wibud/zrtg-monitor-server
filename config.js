@@ -10,8 +10,8 @@ module.exports = (function() {
 		key: ['session key'],
 
 
-		adminName: 'zrgtAdmin',
-		adminPwd: 'zrgtAdminPwd',
+		adminName: 'admin',
+		adminPwd: 'admin',
 
 		db: {
 			host: '127.0.0.1',
