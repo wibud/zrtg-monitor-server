@@ -176,6 +176,8 @@ var Resource = {
         } else {
 
           $('.J_SuccessTip').removeClass('hidden');
+          // 直接跳转到首页
+          window.location.replace('/');
         }
       },
       error: function(err) {

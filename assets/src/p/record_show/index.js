@@ -254,7 +254,7 @@ var Record = {
 
     $.each(list, function(index, item) {
 
-      domString += '<tr>' +
+      domString += '<tr class="' + (item.feedback ? 'alread-feedback' : '') + '">' +
                       '<td>' + item.dept + '</td>' +
                       '<td>' + item.finder + '</td>' +
                       '<td>' + item.clas + '</td>' +
