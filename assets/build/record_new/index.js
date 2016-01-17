@@ -34,6 +34,7 @@ var Resource = {
   initTimepicker: function() {
 
     var config = {
+      defaultTime: '0',
       showSeconds: true,
       // showInputs: false,
       showMeridian: false,
